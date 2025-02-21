@@ -98,7 +98,7 @@
 
         <!-- Forgot Password Link -->
         <div class="forgot-password">
-            <a href="addCustomers.jsp">Forgot Password?</a>
+            <a href="foegotPassword.jsp">Forgot Password?</a>
         </div>
     </div>
 

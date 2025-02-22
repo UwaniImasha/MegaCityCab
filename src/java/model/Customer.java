@@ -9,7 +9,7 @@ package model;
  * @author Uwani Imasha
  */
 public class Customer {
-    private int cudID;
+    private int id;
     private String name;
     private String address;
     private String email;

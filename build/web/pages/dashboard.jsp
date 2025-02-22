@@ -92,7 +92,7 @@
         <a href="dashboard.jsp"><i class="fas fa-home"></i> Dashboard</a>
         <a href="addCustomers.jsp"><i class="fas fa-user-plus"></i> Add Customer</a>
         <a href="addBooking.jsp"><i class="fas fa-taxi"></i> Bookings</a>
-        <a href="#"><i class="fas fa-receipt"></i> Billing</a>
+        <a href="calculateBill.jsp"><i class="fas fa-receipt"></i> Billing</a>
         <a href="#"><i class="fas fa-car"></i> Cars & Drivers</a>
         <a href="help.jsp"><i class="fas fa-info-circle"></i> Help</a>
         <a href="logout.jsp"><i class="fas fa-sign-out-alt"></i> Logout</a>
@@ -125,7 +125,7 @@
                         <i class="fas fa-receipt fa-3x"></i>
                         <h4>Billing</h4>
                         <p>Calculate and print bills</p>
-                        <a href="#" class="btn btn-custom">View</a>
+                        <a href="calculateBill.jsp" class="btn btn-custom">View</a>
                     </div>
                 </div>
             </div>

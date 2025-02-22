@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Billing - Mega City Cab</title>
+    <title>Cars & Drivers - Mega City Cab</title>
     <!-- Bootstrap & Font Awesome -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
@@ -66,9 +66,9 @@
             border-radius: 5px;
         }
 
-        /* Billing Card Styling */
-        .billing-card {
-            background-color: #ffffff; /* White background for billing card */
+        /* Manage Car & Driver Card Styling */
+        .manage-card {
+            background-color: #ffffff; /* White background for the card */
             color: black; /* Black text inside card */
             padding: 20px;
             border-radius: 8px;
@@ -99,40 +99,54 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <h3 class="text-center text-white">Mega City Cab</h3>
-        <a href="dashboard.jsp"><i class="fas fa-home"></i> Dashboard</a>
-        <a href="addCustomers.jsp"><i class="fas fa-user-plus"></i> Add Customer</a>
-        <a href="addBooking.jsp"><i class="fas fa-taxi"></i> Bookings</a>
-        <a href="calculateBill.jsp" class="active"><i class="fas fa-receipt"></i> Billing</a>
-        <a href="cardriverinfo.jsp"><i class="fas fa-car"></i> Cars & Drivers</a>
-        <a href="help.jsp"><i class="fas fa-info-circle"></i> Help</a>
-        <a href="logout.jsp"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        <a href="dashboard.jsp" class="<%= (request.getRequestURI().endsWith("dashboard.jsp")) ? "active" : "" %>">
+            <i class="fas fa-home"></i> Dashboard
+        </a>
+        <a href="addCustomers.jsp" class="<%= (request.getRequestURI().endsWith("addCustomers.jsp")) ? "active" : "" %>">
+            <i class="fas fa-user-plus"></i> Add Customer
+        </a>
+        <a href="addBooking.jsp" class="<%= (request.getRequestURI().endsWith("addBooking.jsp")) ? "active" : "" %>">
+            <i class="fas fa-taxi"></i> Bookings
+        </a>
+        <a href="calculateBill.jsp" class="<%= (request.getRequestURI().endsWith("calculateBill.jsp")) ? "active" : "" %>">
+            <i class="fas fa-receipt"></i> Billing
+        </a>
+        <a href="cardriverinfo.jsp" class="<%= (request.getRequestURI().endsWith("carsDrivers.jsp")) ? "active" : "" %>">
+            <i class="fas fa-car"></i> Cars & Drivers
+        </a>
+        <a href="help.jsp" class="<%= (request.getRequestURI().endsWith("help.jsp")) ? "active" : "" %>">
+            <i class="fas fa-info-circle"></i> Help
+        </a>
+        <a href="logout.jsp" class="<%= (request.getRequestURI().endsWith("logout.jsp")) ? "active" : "" %>">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </a>
     </div>
 
     <!-- Main Content -->
     <div class="main-content">
-        <div class="header">Billing Information</div>
+        <div class="header">Manage Car & Driver Information</div>
 
         <div class="container mt-4">
-            <div class="billing-card">
-                <h4>Calculate Total Bill</h4>
-                <form action="calculateBillServlet" method="post">
+            <div class="manage-card">
+                <h4>Car & Driver Details</h4>
+                <form action="manageCarsAndDriversServlet" method="post">
                     <div class="mb-3">
-                        <label for="bookingNumber" class="form-label">Booking Number</label>
-                        <input type="text" class="form-control" id="bookingNumber" name="bookingNumber" required>
+                        <label for="carModel" class="form-label">Car Model</label>
+                        <input type="text" class="form-control" id="carModel" name="carModel" required>
                     </div>
                     <div class="mb-3">
-                        <label for="distance" class="form-label">Distance (in km)</label>
-                        <input type="number" class="form-control" id="distance" name="distance" required>
+                        <label for="driverName" class="form-label">Driver Name</label>
+                        <input type="text" class="form-control" id="driverName" name="driverName" required>
                     </div>
                     <div class="mb-3">
-                        <label for="tax" class="form-label">Tax Percentage</label>
-                        <input type="number" class="form-control" id="tax" name="tax" required>
+                        <label for="licenseNumber" class="form-label">Driver License Number</label>
+                        <input type="text" class="form-control" id="licenseNumber" name="licenseNumber" required>
                     </div>
                     <div class="mb-3">
-                        <label for="discount" class="form-label">Discount (if any)</label>
-                        <input type="number" class="form-control" id="discount" name="discount" value="0">
+                        <label for="carRegistration" class="form-label">Car Registration Number</label>
+                        <input type="text" class="form-control" id="carRegistration" name="carRegistration" required>
                     </div>
-                    <button type="submit" class="btn btn-custom">Calculate Bill</button>
+                    <button type="submit" class="btn btn-custom">Add Car & Driver</button>
                 </form>
             </div>
         </div>

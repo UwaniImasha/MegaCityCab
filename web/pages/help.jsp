@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Mega City Cab</title>
+    <title>Help - Mega City Cab</title>
     <!-- Bootstrap & Font Awesome -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
@@ -58,13 +58,13 @@
             border-radius: 5px;
         }
 
-        .dashboard-card {
+        .help-section {
             background-color: white;
             color: black;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
+            margin-top: 20px;
         }
 
         .btn-custom {
@@ -100,34 +100,54 @@
 
     <!-- Main Content -->
     <div class="main-content">
-        <div class="header">Welcome to Mega City Cab Management</div>
+        <div class="header">System Usage Guidelines</div>
 
         <div class="container mt-4">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="dashboard-card">
-                        <i class="fas fa-users fa-3x"></i>
-                        <h4>Customers</h4>
-                        <p>Manage customer details</p>
-                        <a href="customers.jsp" class="btn btn-custom">View</a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="dashboard-card">
-                        <i class="fas fa-taxi fa-3x"></i>
-                        <h4>Bookings</h4>
-                        <p>View and manage bookings</p>
-                        <a href="booking.jsp" class="btn btn-custom">View</a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="dashboard-card">
-                        <i class="fas fa-receipt fa-3x"></i>
-                        <h4>Billing</h4>
-                        <p>Calculate and print bills</p>
-                        <a href="#" class="btn btn-custom">View</a>
-                    </div>
-                </div>
+            <div class="help-section">
+                <h2>1. Introduction</h2>
+                <p>Welcome to Mega City Cab! This guide will help you navigate the system and use its features effectively.</p>
+
+                <h2>2. Login Instructions</h2>
+                <p>To login, please use your registered username and password. If you don't have an account, please contact the administrator.</p>
+                <p>If you forget your password, click on "Forgot Password" on the login page to reset it.</p>
+
+                <h2>3. Adding a New Booking</h2>
+                <p>To add a new booking:</p>
+                <ul>
+                    <li>Go to the "Add Booking" section from the sidebar.</li>
+                    <li>Enter the customer's details, including name, phone number, and destination.</li>
+                    <li>Click "Submit" to save the booking.</li>
+                </ul>
+
+                <h2>4. Managing Customers</h2>
+                <p>To manage customer details:</p>
+                <ul>
+                    <li>Go to the "Add Customer" section.</li>
+                    <li>Click "Add New Customer" to enter their details.</li>
+                    <li>You can edit or delete customer records as needed.</li>
+                </ul>
+
+                <h2>5. Billing</h2>
+                <p>To calculate and print bills for bookings:</p>
+                <ul>
+                    <li>Go to the "Billing" section.</li>
+                    <li>Choose a booking and the system will automatically calculate the amount.</li>
+                    <li>You can apply any applicable discounts or taxes.</li>
+                </ul>
+
+                <h2>6. Logout</h2>
+                <p>To logout, click the "Logout" button at the top-right of the sidebar.</p>
+
+                <h2>7. Contact Support</h2>
+                <p>If you need further assistance, please contact us:</p>
+                <ul>
+                    <li>Email: support@megacitycab.com</li>
+                    <li>Phone: 123-456-7890</li>
+                </ul>
+            </div>
+
+            <div class="text-center mt-3">
+                <a href="dashboard.jsp" class="btn btn-custom">Back to Dashboard</a>
             </div>
         </div>
 

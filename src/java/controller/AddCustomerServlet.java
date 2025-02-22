@@ -25,9 +25,10 @@ public class AddCustomerServlet extends HttpServlet {
         String name = request.getParameter("name");
         String address = request.getParameter("address");
         String nic = request.getParameter("nic");
+        String cudID = request.getParameter("cudID");
         String phone = request.getParameter("phone");
 
-        Customer customer = new Customer(name, address, nic, phone);
+        Customer customer = new Customer(name, address, nic, cudID);
         /*boolean isAdded = CustomerDAO.addCustomer(customer);
 
         if (isAdded) {

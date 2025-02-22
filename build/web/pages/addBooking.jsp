@@ -81,11 +81,11 @@
             background-color: #E6B800;
             color: black;
         }
-
+        
         /* Main content wrapper */
         .main-content {
-            margin-left: 250px;
-            width: calc(100% - 250px);
+            margin-left: 250px; /* Ensure sidebar remains fixed */
+            width: calc(100% - 250px); /* Remaining screen space */
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -138,8 +138,9 @@
             text-align: center;
             margin-top: 10px;
         }
+        
+        
     </style>
-
 </head>
 
 <body>
@@ -159,18 +160,24 @@
     <!-- Main Content -->
     <div class="main-content">
         <div class="form-container">
-            <h2>Add New Customer</h2>
-            <form action="AddCustomerServlet" method="post">
-                <!-- Customer Name field -->
+            <h2>Add New Booking</h2>
+            <form action="AddBookingServlet" method="post">
+                <!-- Order No field -->
                 <div class="form-group">
-                    <label for="customerName"><i class="fas fa-user"></i> Customer Name</label>
-                    <input type="text" class="form-control" id="customerName" name="customerName" required>
+                    <label for="orderNo"><i class="fas fa-receipt"></i> Order Number</label>
+                    <input type="text" class="form-control" id="orderNo" name="orderNo" required>
                 </div>
 
-                <!-- Customer Email field -->
+                <!-- Customer Name field -->
                 <div class="form-group">
-                    <label for="email"><i class="fas fa-envelope"></i> Email</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
+                    <label for="name"><i class="fas fa-user"></i> Customer Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+
+                <!-- Customer Address field -->
+                <div class="form-group">
+                    <label for="address"><i class="fas fa-map-marker-alt"></i > Address</label>
+                    <input type="text" class="form-control" id="address" name="address" required>
                 </div>
 
                 <!-- Customer Phone Number field -->
@@ -179,20 +186,14 @@
                     <input type="text" class="form-control" id="phone" name="phone" required>
                 </div>
 
-                <!-- Customer Address field -->
-                <div class="form-group">
-                    <label for="address"><i class="fas fa-map-marker-alt"></i> Address</label>
-                    <input type="text" class="form-control" id="address" name="address" required>
-                </div>
-
                 <!-- Error message display -->
                 <% String error = request.getParameter("error");
                    if (error != null) { %>
-                    <div class="error-msg">There was an issue adding the customer. Please try again.</div>
+                    <div class="error-msg">There was an issue adding the booking. Please try again.</div>
                 <% } %>
 
                 <!-- Submit button -->
-                <button type="submit" class="btn-custom1">Add Customer</button>
+                <button type="submit" class="btn-custom1">Add Booking</button>
             </form>
         </div>
     </div>
@@ -202,3 +203,9 @@
 
 </body>
 </html>
+
+
+
+
+
+

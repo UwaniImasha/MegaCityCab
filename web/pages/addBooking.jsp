@@ -106,9 +106,10 @@
         <h3 class="text-center text-white">Mega City Cab</h3>
         <a href="dashboard.jsp"><i class="fas fa-home"></i> Dashboard</a>
         <a href="addCustomers.jsp"><i class="fas fa-user-plus"></i> Add Customer</a>
-        <a href="addBooking.jsp" class="active"><i class="fas fa-taxi"></i> Bookings</a>
+        <a href="addBooking.jsp"><i class="fas fa-taxi"></i> Bookings</a>
         <a href="calculateBill.jsp"><i class="fas fa-receipt"></i> Billing</a>
-        <a href="cardriverinfo.jsp"><i class="fas fa-car"></i> Cars & Drivers</a>
+        <a href="cars.jsp"><i class="fas fa-car"></i> Add Cars</a>
+        <a href="drivers.jsp"><i class="fas fa-user"></i> Add Drivers</a>
         <a href="help.jsp"><i class="fas fa-info-circle"></i> Help</a>
         <a href="logout.jsp"><i class="fas fa-sign-out-alt"></i> Logout</a>
     </div>

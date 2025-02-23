@@ -93,7 +93,8 @@
         <a href="addCustomers.jsp"><i class="fas fa-user-plus"></i> Add Customer</a>
         <a href="addBooking.jsp"><i class="fas fa-taxi"></i> Bookings</a>
         <a href="calculateBill.jsp"><i class="fas fa-receipt"></i> Billing</a>
-        <a href="cardriverinfo.jsp"><i class="fas fa-car"></i> Cars & Drivers</a>
+        <a href="cars.jsp"><i class="fas fa-car"></i> Add Cars</a>
+        <a href="drivers.jsp"><i class="fas fa-user"></i> Add Drivers</a>
         <a href="help.jsp"><i class="fas fa-info-circle"></i> Help</a>
         <a href="logout.jsp"><i class="fas fa-sign-out-alt"></i> Logout</a>
     </div>
@@ -102,34 +103,56 @@
     <div class="main-content">
         <div class="header">Welcome to Mega City Cab Management</div>
 
-        <div class="container mt-4">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="dashboard-card">
-                        <i class="fas fa-users fa-3x"></i>
-                        <h4>Customers</h4>
-                        <p>Manage customer details</p>
-                        <a href="customers.jsp" class="btn btn-custom">View</a>
-                    </div>
+    <div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="dashboard-card">
+                <i class="fas fa-users fa-3x"></i>
+                <h4>Customers</h4>
+                <p>Manage customer details</p>
+                <a href="customers.jsp" class="btn btn-custom">View</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="dashboard-card">
+                <i class="fas fa-taxi fa-3x"></i>
+                <h4>Bookings</h4>
+                <p>View and manage bookings</p>
+                <a href="booking.jsp" class="btn btn-custom">View</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="dashboard-card">
+                <i class="fas fa-receipt fa-3x"></i>
+                <h4>Billing</h4>
+                <p>Calculate and print bills</p>
+                <a href="calculateBill.jsp" class="btn btn-custom">View</a>
+            </div>
+        </div>
+    </div>
+    
+        
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-4">
+                <div class="dashboard-card">
+                    <i class="fas fa-car fa-3x"></i>
+                    <h4>Cars</h4>
+                    <p>Manage car details</p>
+                    <a href="cars.jsp" class="btn btn-custom">View</a>
                 </div>
-                <div class="col-md-4">
-                    <div class="dashboard-card">
-                        <i class="fas fa-taxi fa-3x"></i>
-                        <h4>Bookings</h4>
-                        <p>View and manage bookings</p>
-                        <a href="booking.jsp" class="btn btn-custom">View</a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="dashboard-card">
-                        <i class="fas fa-receipt fa-3x"></i>
-                        <h4>Billing</h4>
-                        <p>Calculate and print bills</p>
-                        <a href="calculateBill.jsp" class="btn btn-custom">View</a>
-                    </div>
+            </div>
+            <div class="col-md-4">
+                <div class="dashboard-card">
+                    <i class="fas fa-user fa-3x"></i>
+                    <h4>Drivers</h4>
+                    <p>Manage driver details</p>
+                    <a href="drivers.jsp" class="btn btn-custom">View</a>
                 </div>
             </div>
         </div>
+    </div>
+
+
 
     </div>
 

@@ -73,7 +73,6 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
             margin-top: 20px;
         }
 
@@ -135,6 +134,7 @@
                     </div>
                     <button type="submit" class="btn btn-custom">Calculate Bill</button>
                 </form>
+
             </div>
         </div>
 

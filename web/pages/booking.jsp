@@ -60,9 +60,9 @@
         /* Custom Button */
         /* Custom Button */
         .btn-custom {
-            background-color: #FFCC00;
+            background-color: #28b463;
             color: white;
-            border: 1px solid #FFCC00; /* Border added to create a neat outline */
+            border: 1px solid #28b463; /* Border added to create a neat outline */
             padding: 4px 12px; /* Compact padding with more horizontal space */
             font-size: 12px; /* Slightly increased font size for better readability */
             border-radius: 5px; /* More rounded corners for smooth appearance */
@@ -74,9 +74,9 @@
         }
 
         .btn-custom:hover {
-            background-color: #E6B800;
+            background-color: #229954;
             color: black;
-            border-color: #E6B800; /* Change border color on hover */
+            border-color: #229954; /* Change border color on hover */
         }
 
         /* Danger Button (Remove button) */

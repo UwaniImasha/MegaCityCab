@@ -9,11 +9,36 @@
     <title>Edit Car - Mega City Cab</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { background-color: #333333; font-family: 'Arial', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; }
-        .container { max-width: 600px; width: 100%; padding: 40px; background-color: white; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); border-radius: 8px; }
-        h2 { text-align: center; color: #FFCC00; }
-        .btn-custom { background-color: #FFCC00; color: white; border: 1px solid #FFCC00; width: 100%; }
-        .btn-custom:hover { background-color: #E6B800; color: black; }
+        body { 
+            background-color: #333333; 
+            font-family: 'Arial', sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+        }
+        .container { 
+            max-width: 600px;
+            width: 100%; 
+            padding: 40px; 
+            background-color: white; 
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
+            border-radius: 8px; 
+        }
+        h2 { 
+            text-align: center; 
+            color: #FFCC00; 
+        }
+        .btn-custom { 
+            background-color: #FFCC00; 
+            color: white; 
+            border: 1px solid #FFCC00; 
+            width: 100%; 
+        }
+        .btn-custom:hover { 
+            background-color: #E6B800; 
+            color: black; 
+        }
     </style>
 </head>
 <body>

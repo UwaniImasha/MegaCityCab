@@ -8,34 +8,30 @@
     <title>View Bookings - Mega City Cab</title>
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
-
         body {
             background-color: #333333;
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            color: white;
         }
-
-        .customer-container {
-            max-width: 900px;
-            width: 100%;
-            padding: 40px;
-            background-color: white;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+        .main-content { 
+            margin: 20px; 
         }
-
-        .customer-container h2 {
+        .header { 
+            background-color: #FFCC00; 
+            padding: 10px; 
             text-align: center;
-            color: #FFCC00;
+            font-size: 24px; 
+            font-weight: bold;
+            color: black;
+            border-radius: 5px;
+        }
+        .table-container {
+            margin-top: 20px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            color: black;
         }
 
         .table th, .table td {
@@ -45,7 +41,7 @@
 
         .table th {
             background-color: #FFCC00;
-            color: white;
+            color: black;
         }
 
         .table td {
@@ -57,105 +53,104 @@
             justify-content: space-between;
         }
 
-        /* Custom Button */
-        /* Custom Button */
         .btn-custom {
             background-color: #28b463;
             color: white;
-            border: 1px solid #28b463; /* Border added to create a neat outline */
-            padding: 4px 12px; /* Compact padding with more horizontal space */
-            font-size: 12px; /* Slightly increased font size for better readability */
-            border-radius: 5px; /* More rounded corners for smooth appearance */
+            border: 1px solid #28b463;
+            padding: 4px 12px;
+            font-size: 12px;
+            border-radius: 5px;
             text-decoration: none;
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            height: 30px; /* Explicit height for button consistency */
+            height: 30px;
         }
 
         .btn-custom:hover {
             background-color: #229954;
             color: black;
-            border-color: #229954; /* Change border color on hover */
+            border-color: #229954;
         }
 
-        /* Danger Button (Remove button) */
         .btn-danger {
             background-color: #e74c3c;
             color: white;
-            border: 1px solid #e74c3c; /* Border added to create neat outline */
-            padding: 4px 12px; /* Compact padding with more horizontal space */
-            font-size: 12px; /* Consistent font size */
-            border-radius: 5px; /* More rounded corners for smooth appearance */
+            border: 1px solid #e74c3c;
+            padding: 4px 12px;
+            font-size: 12px;
+            border-radius: 5px;
             text-decoration: none;
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            height: 30px; /* Explicit height for button consistency */
+            height: 30px;
         }
 
         .btn-danger:hover {
             background-color: #c0392b;
-            border-color: #c0392b; /* Change border color on hover */
+            border-color: #c0392b;
         }
-
     </style>
 </head>
 
 <body>
-    <div class="customer-container">
-        <h2>Booking List</h2>
-        <!-- Customers table -->
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Order Number</th>
-                    <th>Customer Name</th>
-                    <th>Address</th>
-                    <th>Phone</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Example customer row -->
-                <tr>
-                    <td>1</td>
-                    <td>John Doe</td>
-                    <td>john.doe@example.com</td>
-                    <td>+1234567890</td>
-                    <td class="action-buttons">
-                        <a href="editCustomer.jsp?id=1" class="btn btn-custom">
-                            <i class="fas fa-edit"></i> Edit
-                        </a>
-                        <a href="DeleteCustomerServlet?id=1" class="btn btn-danger">
-                            <i class="fas fa-trash"></i> Remove
-                        </a>
-                    </td>
-                </tr>
 
-                <!-- Example customer row -->
-                <tr>
-                    <td>2</td>
-                    <td>Jane Smith</td>
-                    <td>jane.smith@example.com</td>
-                    <td>+9876543210</td>
-                    <td class="action-buttons">
-                        <a href="editCustomer.jsp?id=2" class="btn btn-custom">
-                            <i class="fas fa-edit"></i> Edit
-                        </a>
-                        <a href="DeleteCustomerServlet?id=2" class="btn btn-danger">
-                            <i class="fas fa-trash"></i> Remove
-                        </a>
-                    </td>
-                </tr>
+    <div class="main-content">
+        <div class="header">Booking List</div>
 
-                <!-- Additional rows can go here -->
+        <div class="container table-container">
+            <h4 class="text-center">Registered Bookings</h4>
 
-            </tbody>
-        </table>
+            <table class="table table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Order Number</th>
+                        <th>Customer Name</th>
+                        <th>Address</th>
+                        <th>Phone</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example booking row -->
+                    <tr>
+                        <td>1</td>
+                        <td>John Doe</td>
+                        <td>john.doe@example.com</td>
+                        <td>+1234567890</td>
+                        <td class="action-buttons">
+                            <a href="editBooking.jsp?id=1" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="deleteBookingServlet?id=1" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this booking?');">Delete</a>
+                        </td>
+                    </tr>
+
+                    <!-- Example booking row -->
+                    <tr>
+                        <td>2</td>
+                        <td>Jane Smith</td>
+                        <td>jane.smith@example.com</td>
+                        <td>+9876543210</td>
+                        <td class="action-buttons">
+                            <a href="editBooking.jsp?id=2" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="deleteBookingServlet?id=2" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this booking?');">Delete</a>
+                        </td>
+                    </tr>
+
+                    <!-- Additional rows can go here -->
+
+                </tbody>
+            </table>
+
+            <div class="text-center mt-3">
+                <a href="addBooking.jsp" class="btn btn-success">Add New Booking</a>
+            </div>
+
+        </div>
     </div>
 
-    <!-- Bootstrap JS -->
+    <!-- Bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

@@ -138,7 +138,7 @@
                     <i class="fas fa-car fa-3x"></i>
                     <h4>Cars</h4>
                     <p>Manage car details</p>
-                    <a href="editCar.jsp" class="btn btn-custom">View</a>
+                    <a href="car.jsp" class="btn btn-custom">View</a>
                 </div>
             </div>
             <div class="col-md-4">

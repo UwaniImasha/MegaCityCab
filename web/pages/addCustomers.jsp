@@ -120,7 +120,7 @@
         <div class="container mt-4">
             <div class="manage-card">
                 <h4>Customer Details</h4>
-                <form action="addCustomerServlet" method="post">
+                <form action="AddCustomerServlet" method="post">
                     <!-- Customer ID -->
                     <div class="mb-3">
                         <label for="customerId" class="form-label"><i class="fas fa-id-card"></i> Customer ID</label>
@@ -146,10 +146,11 @@
                     </div>
 
                     <!-- Error Message -->
-                    <% String error = request.getParameter("error");
-                       if (error != null) { %>
-                        <div class="error-msg">There was an issue adding the customer. Please try again.</div>
+                    <% String success = request.getParameter("success");
+                        if (success != null) { %>
+                        <div class="alert alert-success text-center">Customer added successfully!</div>
                     <% } %>
+
 
                     <!-- Submit Button -->
                     <button type="submit" class="btn-custom">Add Customer</button>

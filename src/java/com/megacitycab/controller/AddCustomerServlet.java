@@ -9,10 +9,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
-@WebServlet("/AddCustomerServlet")
+@WebServlet("/addCustomerServlet")
 public class AddCustomerServlet extends HttpServlet {
+    
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Retrieve form data
         String customerId = request.getParameter("customerId");
         String customerName = request.getParameter("customerName");
         String customerAddress = request.getParameter("customerAddress");
@@ -26,15 +27,23 @@ public class AddCustomerServlet extends HttpServlet {
         }
 
         try {
-            CustomerDAO customerDao = new CustomerDAO();
+            // Create a new customer object
             Customer customer = new Customer(customerId, customerName, customerAddress, customerPhone);
+            
+            // Create a DAO instance to interact with the database
+            CustomerDAO customerDao = new CustomerDAO();
 
-            if (customerDao.addCustomer(customer)) {
-                response.sendRedirect("addCustomers.jsp?success=true");
+            // Try to add the customer
+            boolean success = customerDao.addCustomer(customer);
+
+            // Redirect to customer.jsp after successful addition
+            if (success) {
+                response.sendRedirect("pages/customers.jsp?success=true");
             } else {
                 response.sendRedirect("addCustomers.jsp?error=Failed to add customer.");
             }
         } catch (Exception e) {
+            // Handle any exceptions that occur during the operation
             e.printStackTrace();
             response.sendRedirect("addCustomers.jsp?error=" + e.getMessage());
         }

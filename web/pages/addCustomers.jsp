@@ -120,7 +120,7 @@
         <div class="container mt-4">
             <div class="manage-card">
                 <h4>Customer Details</h4>
-                <form action="AddCustomerServlet" method="post">
+                <form action="/MegaCityCab/addCustomerServlet" method="post">
                     <!-- Customer ID -->
                     <div class="mb-3">
                         <label for="customerId" class="form-label"><i class="fas fa-id-card"></i> Customer ID</label>
@@ -145,12 +145,13 @@
                         <input type="text" class="form-control" id="customerPhone" name="customerPhone" required>
                     </div>
 
-                    <!-- Error Message -->
-                    <% String success = request.getParameter("success");
-                        if (success != null) { %>
-                        <div class="alert alert-success text-center">Customer added successfully!</div>
+                    <!-- Success Message -->
+                    <% 
+                    String success = request.getParameter("success");
+                    if ("true".equals(success)) { 
+                    %>
+                    <div class="alert alert-success text-center">Customer added successfully!</div>
                     <% } %>
-
 
                     <!-- Submit Button -->
                     <button type="submit" class="btn-custom">Add Customer</button>

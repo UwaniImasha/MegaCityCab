@@ -6,7 +6,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add New Booking - Mega City Cab</title>
-    <!-- Bootstrap & Font Awesome -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     
@@ -95,7 +94,6 @@
             text-align: center;
             margin-top: 10px;
         }
-
     </style>
 </head>
 
@@ -127,6 +125,12 @@
                         <input type="text" class="form-control" id="orderNo" name="orderNo" required>
                     </div>
 
+                    <!-- Customer Registration Number -->
+                    <div class="mb-3">
+                        <label for="customerRegNo" class="form-label"><i class="fas fa-id-card"></i> Customer Registration Number</label>
+                        <input type="text" class="form-control" id="customerRegNo" name="customerRegNo" required>
+                    </div>
+
                     <!-- Customer Name -->
                     <div class="mb-3">
                         <label for="name" class="form-label"><i class="fas fa-user"></i> Customer Name</label>
@@ -143,6 +147,18 @@
                     <div class="mb-3">
                         <label for="phone" class="form-label"><i class="fas fa-phone"></i> Phone Number</label>
                         <input type="text" class="form-control" id="phone" name="phone" required>
+                    </div>
+
+                    <!-- Destination Details -->
+                    <div class="mb-3">
+                        <label for="destination" class="form-label"><i class="fas fa-location-arrow"></i> Destination</label>
+                        <input type="text" class="form-control" id="destination" name="destination" required>
+                    </div>
+
+                    <!-- Booking Date and Time -->
+                    <div class="mb-3">
+                        <label for="bookingTime" class="form-label"><i class="fas fa-calendar-alt"></i> Booking Date and Time</label>
+                        <input type="datetime-local" class="form-control" id="bookingTime" name="bookingTime" required>
                     </div>
 
                     <!-- Error Message -->

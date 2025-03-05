@@ -1,13 +1,19 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page session="true" %>
+<%@ page import="com.megacitycab.dao.BookingDAO, com.megacitycab.model.Booking, java.util.List" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="com.megacitycab.util.DBConnection" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Bookings - Mega City Cab</title>
-    <!-- Bootstrap -->
+    
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
         body {
             background-color: #333333;
@@ -91,58 +97,90 @@
             background-color: #c0392b;
             border-color: #c0392b;
         }
+
+        .text-center .btn {
+            margin-top: 20px;
+        }
     </style>
 </head>
 
 <body>
 
     <div class="main-content">
-        <div class="header">Booking List</div>
+        <div class="header">Booking Details</div>
 
         <div class="container table-container">
-            <h4 class="text-center">Registered Bookings</h4>
+            <h4 class="text-center">Bookings</h4>
 
             <table class="table table-striped">
                 <thead class="table-dark">
                     <tr>
-                        <th>Order Number</th>
-                        <th>Customer Name</th>
+                        <th>Order No</th>
+                        <th>Customer Reg No</th>
+                        <th>Name</th>
                         <th>Address</th>
                         <th>Phone</th>
+                        <th>Destination</th>
+                        <th>Booking Time</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Example booking row -->
-                    <tr>
-                        <td>1</td>
-                        <td>John Doe</td>
-                        <td>john.doe@example.com</td>
-                        <td>+1234567890</td>
-                        <td class="action-buttons">
-                            <a href="editBooking.jsp?id=1" class="btn btn-warning btn-sm">Edit</a>
-                            <a href="deleteBookingServlet?id=1" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this booking?');">Delete</a>
-                        </td>
-                    </tr>
+                    <%
+                        try {
+                            // Get database connection
+                            Connection conn = DBConnection.getConnection();
 
-                    <!-- Example booking row -->
-                    <tr>
-                        <td>2</td>
-                        <td>Jane Smith</td>
-                        <td>jane.smith@example.com</td>
-                        <td>+9876543210</td>
-                        <td class="action-buttons">
-                            <a href="editBooking.jsp?id=2" class="btn btn-warning btn-sm">Edit</a>
-                            <a href="deleteBookingServlet?id=2" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this booking?');">Delete</a>
-                        </td>
-                    </tr>
+                            // Create the BookingDAO object with the connection
+                            BookingDAO bookingDao = new BookingDAO(conn);
+                            
+                            // Fetch all bookings from the database
+                            List<Booking> bookings = bookingDao.getAllBookings();
 
-                    <!-- Additional rows can go here -->
-
+                            if (bookings.isEmpty()) {
+                    %>
+                        <tr>
+                            <td colspan="8" class="text-center text-danger">No bookings found.</td>
+                        </tr>
+                    <%
+                            } else {
+                                for (Booking booking : bookings) {
+                    %>
+                        <tr>
+                            <td><%= booking.getOrderNo() %></td>
+                            <td><%= booking.getCustomerRegNo() %></td>
+                            <td><%= booking.getName() %></td>
+                            <td><%= booking.getAddress() %></td>
+                            <td><%= booking.getPhone() %></td>
+                            <td><%= booking.getDestination() %></td>
+                            <td><%= booking.getBookingTime() %></td>
+                            <td class="action-buttons">
+                                <!-- Edit Button -->
+                                <a href="editBooking.jsp?orderNo=<%= booking.getOrderNo() %>" class="btn btn-warning btn-sm">Edit</a>
+                                
+                                <!-- Delete Button with Confirmation -->
+                                <form action="DeleteBookingServlet" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this booking?');">
+                                    <input type="hidden" name="orderNo" value="<%= booking.getOrderNo() %>">
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <%
+                                }
+                            }
+                        } catch (Exception e) {
+                    %>
+                        <tr>
+                            <td colspan="8" class="text-center text-danger">Error fetching booking data.</td>
+                        </tr>
+                    <%
+                            e.printStackTrace();
+                        }
+                    %>
                 </tbody>
             </table>
 
-            <div class="text-center mt-3">
+            <div class="text-center">
                 <a href="addBooking.jsp" class="btn btn-success">Add New Booking</a>
             </div>
 

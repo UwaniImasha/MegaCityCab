@@ -144,7 +144,7 @@
                                 <a href="editCustomer.jsp?customerId=<%= customer.getCustomerId() %>" class="btn btn-warning btn-sm">Edit</a>
                                 
                                 <!-- Delete Button with Confirmation -->
-                                <form action="pages/DeleteCustomerServlet" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this customer?');">
+                                <form action="DeleteCustomerServlet" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this customer?');">
                                     <input type="hidden" name="customerId" value="<%= customer.getCustomerId() %>">
                                     <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                 </form>
@@ -167,6 +167,7 @@
 
             <div class="text-center">
                 <a href="addCustomers.jsp" class="btn btn-success">Add New Customer</a>
+                <a href="dashboard.jsp" class="btn btn-primary">Go to Dashboard</a>
             </div>
 
         </div>

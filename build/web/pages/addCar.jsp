@@ -83,7 +83,7 @@
         <div class="container mt-4">
             <div class="form-container">
                 <h4>Car Details</h4>
-                <form action="addCarServlet" method="post">
+                <form action="/MegaCityCab/addCarServlet" method="post">
                     <div class="mb-3">
                         <label for="carId" class="form-label">Car ID</label>
                         <input type="text" class="form-control" id="carId" name="carId" required>
@@ -93,8 +93,31 @@
                         <input type="text" class="form-control" id="model" name="model" required>
                     </div>
                     <div class="mb-3">
-                        <label for="registration" class="form-label">Registration No</label>
-                        <input type="text" class="form-control" id="registration" name="registration" required>
+                        <label for="registrationNo" class="form-label">Registration No</label>
+                        <input type="text" class="form-control" id="registrationNo" name="registrationNo" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="carType" class="form-label">Car Type</label>
+                        <select class="form-control" id="carType" name="carType" required>
+                            <option value="Sedan">Sedan</option>
+                            <option value="SUV">SUV</option>
+                            <option value="Hatchback">Hatchback</option>
+                            <option value="Luxury">Luxury</option>
+                            <option value="Van">Van</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="modelYear" class="form-label">Model Year</label>
+                        <input type="number" class="form-control" id="modelYear" name="modelYear" required min="2000" max="2025">
+                    </div>
+                    <div class="mb-3">
+                        <label for="fuelType" class="form-label">Fuel Type</label>
+                        <select class="form-control" id="fuelType" name="fuelType" required>
+                            <option value="Petrol">Petrol</option>
+                            <option value="Diesel">Diesel</option>
+                            <option value="Electric">Electric</option>
+                            <option value="Hybrid">Hybrid</option>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="availability" class="form-label">Availability</label>

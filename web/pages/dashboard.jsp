@@ -146,13 +146,13 @@
                     <i class="fas fa-user fa-3x"></i>
                     <h4>Drivers</h4>
                     <p>Manage driver details</p>
-                    <a href="editDriver.jsp" class="btn btn-custom">View</a>
+                    <a href="driver.jsp" class="btn btn-custom">View</a>
                 </div>
             </div>
         </div>
     </div>
 
-
+        
 
     </div>
 

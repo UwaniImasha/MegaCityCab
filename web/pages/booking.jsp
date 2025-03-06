@@ -132,10 +132,12 @@
                             Connection conn = DBConnection.getConnection();
 
                             // Create the BookingDAO object with the connection
-                            BookingDAO bookingDao = new BookingDAO(conn);
+                            BookingDAO bookingDao = new BookingDAO();
                             
                             // Fetch all bookings from the database
                             List<Booking> bookings = bookingDao.getAllBookings();
+                            
+                            
 
                             if (bookings.isEmpty()) {
                     %>
@@ -181,7 +183,8 @@
             </table>
 
             <div class="text-center">
-                <a href="addBooking.jsp" class="btn btn-success">Add New Booking</a>
+                <a href="addCustomers.jsp" class="btn btn-success">Add New Customer</a>
+                <a href="dashboard.jsp" class="btn btn-primary">Go to Dashboard</a>
             </div>
 
         </div>

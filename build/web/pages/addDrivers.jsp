@@ -6,10 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Driver - Mega City Cab</title>
-    <!-- Bootstrap & FontAwesome -->
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-
     <style>
         body { 
             background-color: #333; 
@@ -60,6 +59,10 @@
             color: black; 
             width: 100%; 
         }
+        .alert { 
+            font-size: 16px; 
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -83,14 +86,35 @@
         <div class="container mt-4">
             <div class="form-container">
                 <h4>Driver Details</h4>
-                <form action="addDriverServlet" method="post">
+
+                <!-- Display Success or Error Messages -->
+                <%
+                    String error = request.getParameter("error");
+                    if (error != null && !error.isEmpty()) {
+                %>
+                    <div class="alert alert-danger text-center">
+                        <%= error %>
+                    </div>
+                <% } %>
+
+                <%
+                    String success = request.getParameter("success");
+                    if ("true".equals(success)) {
+                %>
+                    <div class="alert alert-success text-center">
+                        Driver added successfully!
+                    </div>
+                <% } %>
+
+                <!-- Form to Add Driver -->
+                <form action="/MegaCityCab/addDriverServlet" method="post">
                     <div class="mb-3">
                         <label for="driverId" class="form-label">Driver ID</label>
                         <input type="text" class="form-control" id="driverId" name="driverId" required>
                     </div>
                     <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
+                        <label for="dName" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="dName" name="dName" required>
                     </div>
                     <div class="mb-3">
                         <label for="license" class="form-label">License No</label>

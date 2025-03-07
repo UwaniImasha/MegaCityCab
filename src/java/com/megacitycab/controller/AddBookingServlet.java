@@ -23,7 +23,7 @@ public class AddBookingServlet extends HttpServlet {
         String pickupLocation = request.getParameter("pickupLocation");
         String destination = request.getParameter("destination");
         String dateTime = request.getParameter("dateTime");
-        String fare = request.getParameter("fare"); // Fare as String
+        String fare = request.getParameter("fare"); 
 
         // Input validation
         if (bookingNumber == null || customerId == null || driverId == null || carId == null || phone == null || 

@@ -26,8 +26,7 @@ public class AddDriverServlet extends HttpServlet {
             return;
         }
 
-        // Optionally add format validation (for contact number and license, etc.)
-        // Example: validate phone number format
+        
         if (!contact.matches("\\d{10}")) {  // assuming contact should be a 10-digit number
             response.sendRedirect("addDrivers.jsp?error=Invalid contact number.");
             return;

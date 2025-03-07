@@ -38,8 +38,8 @@
         }
 
         .table th, .table td {
-            text-align: center; /* Centering all data */
-            vertical-align: middle; /* Aligning vertically */
+            text-align: center; 
+            vertical-align: middle; 
         }
 
         .table th {

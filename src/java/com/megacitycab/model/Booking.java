@@ -9,7 +9,7 @@ public class Booking {
     private String pickupLocation;
     private String destination;
     private String dateTime;
-    private String fare;  // Changed fare field type to String
+    private String fare;  
 
     public Booking(String bookingNumber, String customerId, String driverId, String carId, String phone, 
                    String pickupLocation, String destination, String dateTime, String fare) {
@@ -21,7 +21,7 @@ public class Booking {
         this.pickupLocation = pickupLocation;
         this.destination = destination;
         this.dateTime = dateTime;
-        this.fare = fare;  // Set fare as a String in the constructor
+        this.fare = fare; 
     }
 
     // Getters and Setters

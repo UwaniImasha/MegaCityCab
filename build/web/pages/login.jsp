@@ -76,7 +76,7 @@
 <body>
     <div class="login-container">
         <h2>Login to Mega City Cab</h2>
-        <form action="LoginServelet" method="post">
+        <form action="/Megacity/LoginServlet" method="post">
             <!-- Username field with icon -->
             <div class="form-group">
                 <label for="username"><i class="fas fa-user"></i> Username</label>
@@ -101,7 +101,6 @@
             <a href="dashboard.jsp">Forgot Password?</a>
         </div>
     </div>
-
 
     <!-- Include JavaScript for client-side validation (optional) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

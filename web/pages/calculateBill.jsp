@@ -121,8 +121,8 @@
                         <input type="text" class="form-control" id="bookingNumber" name="bookingNumber" required>
                     </div>
                     <div class="mb-3">
-                        <label for="distance" class="form-label">Distance (in km)</label>
-                        <input type="number" class="form-control" id="distance" name="distance" required>
+                        <label for="fare" class="form-label">Fare</label>
+                        <input type="number" class="form-control" id="fare" name="fare" required>
                     </div>
                     <div class="mb-3">
                         <label for="tax" class="form-label">Tax Percentage</label>

@@ -1,17 +1,34 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.megacitycab.dao;
 
-/**
- *
- * @author Uwani Imasha
- */
+import com.megacitycab.model.User;
+import com.megacitycab.util.DBConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 public class UserDAO {
 
-    public boolean validateUser(String username, String password) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public User authenticateUser(String username, String password) {
+        User user = null;
+
+        // Database connection code (make sure to use your DB connection logic here)
+        try (Connection con = DBConnection.getConnection()) {
+            String query = "SELECT * FROM users WHERE username = ? AND password = ?";
+            try (PreparedStatement stmt = con.prepareStatement(query)) {
+                stmt.setString(1, username);
+                stmt.setString(2, password);
+
+                ResultSet rs = stmt.executeQuery();
+
+                if (rs.next()) {
+                    user = new User(rs.getString("username"), rs.getString("password"));
+                    // Add any additional fields to the User object as required
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return user;
     }
-    
 }

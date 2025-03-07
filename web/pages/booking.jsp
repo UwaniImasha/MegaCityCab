@@ -155,11 +155,13 @@
                             <td><%= booking.getDateTime() %></td>
                             <td><%= booking.getFare() %></td>
                             <td class="action-buttons">
-                                <!-- Calculate Bill Button -->
+                                
                                 <form action="calculateBill.jsp" method="post">
                                     <input type="hidden" name="bookingNumber" value="<%= booking.getBookingNumber() %>">
+                                    <input type="hidden" name="fare" value="<%= booking.getFare() %>">
                                     <button type="submit" class="btn btn-custom btn-sm">Calculate Bill</button>
                                 </form>
+
 
                                 <!-- Edit Button -->
                                 <a href="editBooking.jsp?bookingNumber=<%= booking.getBookingNumber() %>" class="btn btn-warning btn-sm">Edit</a>

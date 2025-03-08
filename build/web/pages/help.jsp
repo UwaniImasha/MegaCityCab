@@ -132,8 +132,11 @@
                 <p>To calculate and print bills for bookings:</p>
                 <ul>
                     <li>Go to the "Billing" section.</li>
-                    <li>Choose a booking and the system will automatically calculate the amount.</li>
-                    <li>You can apply any applicable discounts or taxes.</li>
+                    <li>Select a booking, and the system will display the booking details.</li>
+                    <li>Enter any discounts or taxes, if applicable.</li>
+                    <li>Click the "Submit" button to calculate the final bill.</li>
+                    <li>The system will display the final bill with the updated fare.</li>
+                    <li>Click the "Print Bill" button to print the bill.</li>
                 </ul>
 
                 <h2>6. Logout</h2>

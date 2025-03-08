@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Uwani%20Imasha/Documents/NetBeansProjects/MegaCityCab/src/java/com/megacitycab/controller/ProcessBillServlet.java</file>
+            <file>file:/C:/Users/Uwani%20Imasha/Documents/NetBeansProjects/MegaCityCab/web/pages/booking.jsp</file>
+            <file>file:/C:/Users/Uwani%20Imasha/Documents/NetBeansProjects/MegaCityCab/web/pages/displayBill.jsp</file>
+            <file>file:/C:/Users/Uwani%20Imasha/Documents/NetBeansProjects/MegaCityCab/src/java/com/megacitycab/model/Bill.java</file>
+            <file>file:/C:/Users/Uwani%20Imasha/Documents/NetBeansProjects/MegaCityCab/web/pages/calculateBill.jsp</file>
+            <file>file:/C:/Users/Uwani%20Imasha/Documents/NetBeansProjects/MegaCityCab/src/java/com/megacitycab/dao/BillDAO.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add New Customer - Mega City Cab</title>
+    <title>Dashboard - Mega City Cab</title>
     <!-- Bootstrap & Font Awesome -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
@@ -58,12 +58,13 @@
             border-radius: 5px;
         }
 
-        .manage-card {
+        .dashboard-card {
             background-color: white;
             color: black;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
 
         .btn-custom {
@@ -80,22 +81,6 @@
             background-color: #E6B800;
             color: black;
         }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-container label {
-            color: black;
-        }
-
-        .error-msg {
-            color: red;
-            font-size: 14px;
-            text-align: center;
-            margin-top: 10px;
-        }
-
     </style>
 </head>
 
@@ -116,48 +101,59 @@
 
     <!-- Main Content -->
     <div class="main-content">
-        <div class="header">Add New Customer</div>
-        <div class="container mt-4">
-            <div class="manage-card">
-                <h4>Customer Details</h4>
-                <form action="/MegaCityCab/addCustomerServlet" method="post">
-                    <!-- Customer ID -->
-                    <div class="mb-3">
-                        <label for="customerId" class="form-label"><i class="fas fa-id-card"></i> Customer ID</label>
-                        <input type="text" class="form-control" id="customerId" name="customerId" required>
-                    </div>
+        <div class="header">Welcome to Mega City Cab Management</div>
 
-                    <!-- Customer Name -->
-                    <div class="mb-3">
-                        <label for="customerName" class="form-label"><i class="fas fa-user"></i> Customer Name</label>
-                        <input type="text" class="form-control" id="customerName" name="customerName" required>
-                    </div>
-
-                    <!-- Customer Address -->
-                    <div class="mb-3">
-                        <label for="customerAddress" class="form-label"><i class="fas fa-map-marker-alt"></i> Address</label>
-                        <input type="text" class="form-control" id="customerAddress" name="customerAddress" required>
-                    </div>
-
-                    <!-- Customer Phone Number -->
-                    <div class="mb-3">
-                        <label for="customerPhone" class="form-label"><i class="fas fa-phone"></i> Phone Number</label>
-                        <input type="text" class="form-control" id="customerPhone" name="customerPhone" required>
-                    </div>
-
-                    <!-- Success Message -->
-                    <% 
-                    String success = request.getParameter("success");
-                    if ("true".equals(success)) { 
-                    %>
-                    <div class="alert alert-success text-center">Customer added successfully!</div>
-                    <% } %>
-
-                    <!-- Submit Button -->
-                    <button type="submit" class="btn-custom">Add Customer</button>
-                </form>
+    <div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="dashboard-card">
+                <i class="fas fa-users fa-3x"></i>
+                <h4>Customers</h4>
+                <p>Manage customer details</p>
+                <a href="customers.jsp" class="btn btn-custom">View</a>
             </div>
         </div>
+        <div class="col-md-4">
+            <div class="dashboard-card">
+                <i class="fas fa-taxi fa-3x"></i>
+                <h4>Bookings</h4>
+                <p>View and manage bookings</p>
+                <a href="booking.jsp" class="btn btn-custom">View</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="dashboard-card">
+                <i class="fas fa-receipt fa-3x"></i>
+                <h4>Billing</h4>
+                <p>Calculate and print bills</p>
+                <a href="calculateBill.jsp" class="btn btn-custom">View</a>
+            </div>
+        </div>
+    </div>
+    
+        
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-4">
+                <div class="dashboard-card">
+                    <i class="fas fa-car fa-3x"></i>
+                    <h4>Cars</h4>
+                    <p>Manage car details</p>
+                    <a href="car.jsp" class="btn btn-custom">View</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="dashboard-card">
+                    <i class="fas fa-user fa-3x"></i>
+                    <h4>Drivers</h4>
+                    <p>Manage driver details</p>
+                    <a href="driver.jsp" class="btn btn-custom">View</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        
+
     </div>
 
     <!-- JavaScript -->

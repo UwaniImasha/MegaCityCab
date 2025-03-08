@@ -64,7 +64,7 @@
         <div class="header">Calculate Bill</div>
 
         <div class="container form-container">
-            <form action="processBillServlet" method="post">
+            <form action="/MegaCityCab/processBillServlet" method="post">
                 <div class="mb-3">
                     <label for="bookingNumber" class="form-label">Booking Number</label>
                     <input type="text" class="form-control" id="bookingNumber" name="bookingNumber" value="<%= request.getParameter("bookingNumber") %>" readonly>
@@ -77,12 +77,13 @@
 
                 <div class="mb-3">
                     <label for="discount" class="form-label">Discount</label>
-                    <input type="text" class="form-control" id="discount" name="discount">
+                    <input type="text" class="form-control" id="discount" name="discount" value="0">
+
                 </div>
 
                 <div class="mb-3">
                     <label for="taxes" class="form-label">Taxes</label>
-                    <input type="text" class="form-control" id="taxes" name="taxes">
+                    <input type="text" class="form-control" id="taxes" name="taxes" value="0">
                 </div>
 
                 <button type="submit" class="btn btn-custom">Submit</button>

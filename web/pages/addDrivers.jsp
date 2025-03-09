@@ -82,7 +82,7 @@
         <a href="addCar.jsp"><i class="fas fa-car"></i> Add Cars</a>
         <a href="addDrivers.jsp"><i class="fas fa-user"></i> Add Drivers</a>
         <a href="help.jsp"><i class="fas fa-info-circle"></i> Help</a>
-        <a href="logout.jsp"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        <a href="login.jsp"><i class="fas fa-sign-out-alt"></i> Logout</a>
     </div>
 
     <!-- Main Content -->

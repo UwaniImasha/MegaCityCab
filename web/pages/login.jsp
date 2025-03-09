@@ -54,9 +54,11 @@
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
 
-            <% String error = request.getParameter("error"); 
-               if (error != null) { %>
-                <p class="text-danger text-center fs-5">Invalid username or password.</p>
+            <% 
+               String error = (String) request.getAttribute("error"); 
+               if (error != null) { 
+            %>
+                <p class="text-danger text-center fs-5"><%= error %></p>
             <% } %>
 
             <button type="submit" class="btn btn-custom w-100">Login</button>

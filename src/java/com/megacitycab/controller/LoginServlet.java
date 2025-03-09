@@ -39,14 +39,16 @@ public class LoginServlet extends HttpServlet {
                         // Redirect to dashboard
                         response.sendRedirect("pages/dashboard.jsp");
                     } else {
-                        // Invalid credentials, redirect with error message
-                        response.sendRedirect("login.jsp?error=1");
+                        // Invalid credentials, forward with error message
+                        request.setAttribute("error", "Invalid username or password.");
+                        request.getRequestDispatcher("login.jsp").forward(request, response);
                     }
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace(); // Log error
-            response.sendRedirect("login.jsp?error=1"); // Redirect to login page with error
+            request.setAttribute("error", "An error occurred. Please try again.");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }
 }

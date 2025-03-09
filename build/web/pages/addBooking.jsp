@@ -42,6 +42,12 @@
             background-color: #FFCC00;
             color: black;
         }
+        
+        .sidebar h3 {
+            color: #FFFFFF;
+            text-align: center;
+            font-weight: bold;
+        }
 
         .main-content {
             margin-left: 250px;

@@ -47,6 +47,12 @@
             margin-left: 250px;
             padding: 20px;
         }
+        
+        .sidebar h3 {
+            color: #FFFFFF;
+            text-align: center;
+            font-weight: bold;
+        }
 
         .header {
             background-color: #FFCC00;

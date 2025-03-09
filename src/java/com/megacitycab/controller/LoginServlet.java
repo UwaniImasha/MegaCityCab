@@ -1,5 +1,11 @@
 package com.megacitycab.controller;
 
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import com.megacitycab.util.DBConnection; 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -7,31 +13,40 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-import java.io.IOException;
-
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
 
-    // Hardcoded credentials (for testing purposes)
-    private static final String HARD_CODED_USERNAME = "admin";
-    private static final String HARD_CODED_PASSWORD = "admin123";  // This should be hashed for security in production
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Retrieve form data
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        // Check if the username and password match the hardcoded values
-        if (HARD_CODED_USERNAME.equals(username) && HARD_CODED_PASSWORD.equals(password)) {
-            // Authentication successful, create a session for the admin
-            HttpSession session = request.getSession();
-            session.setAttribute("admin", username);
+        try (Connection conn = DBConnection.getConnection()) { 
+            // Query to check credentials without using 'id'
+            String sql = "SELECT username FROM users WHERE username=? AND password=?";
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setString(1, username);
+                stmt.setString(2, password);
+                
+                try (ResultSet rs = stmt.executeQuery()) {
+                    if (rs.next()) {
+                        // User credentials are valid, store username in session
+                        HttpSession session = request.getSession();
+                        session.setAttribute("username", username); // Store username
 
-            // Redirect to the admin dashboard after successful login
-            response.sendRedirect("dashboard.jsp");
-        } else {
-            // Authentication failed, redirect to login page with an error message
-            response.sendRedirect("login.jsp?error=true");
+                        // Redirect to dashboard
+                        response.sendRedirect("pages/dashboard.jsp");
+                    } else {
+                        // Invalid credentials, redirect with error message
+                        response.sendRedirect("login.jsp?error=1");
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Log error
+            response.sendRedirect("login.jsp?error=1"); // Redirect to login page with error
         }
     }
 }

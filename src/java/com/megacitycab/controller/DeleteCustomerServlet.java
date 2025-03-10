@@ -1,7 +1,6 @@
 package com.megacitycab.controller;
 
 import com.megacitycab.dao.CustomerDAO;
-import com.megacitycab.util.DBConnection;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -9,7 +8,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.sql.Connection;
 
 @WebServlet("/pages/DeleteCustomerServlet")
 public class DeleteCustomerServlet extends HttpServlet {
@@ -20,11 +18,13 @@ public class DeleteCustomerServlet extends HttpServlet {
         String customerId = request.getParameter("customerId");
 
         try {
-            Connection connection = DBConnection.getConnection();
-            CustomerDAO customerDao = new CustomerDAO(connection);
+            // Use the Singleton instance of CustomerDAO
+            CustomerDAO customerDao = CustomerDAO.getInstance();  // Get the singleton instance
             
+            // Delete the customer
             boolean deleted = customerDao.deleteCustomer(customerId);
 
+            // Redirect based on whether the deletion was successful or not
             if (deleted) {
                 response.sendRedirect("customers.jsp?success=Customer deleted successfully");
             } else {

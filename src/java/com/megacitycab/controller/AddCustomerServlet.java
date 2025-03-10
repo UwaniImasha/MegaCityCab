@@ -30,8 +30,8 @@ public class AddCustomerServlet extends HttpServlet {
             // Create a new customer object
             Customer customer = new Customer(customerId, customerName, customerAddress, customerPhone);
             
-            // Create a DAO instance to interact with the database
-            CustomerDAO customerDao = new CustomerDAO();
+            // Get the singleton instance of CustomerDAO
+            CustomerDAO customerDao = CustomerDAO.getInstance();
 
             // Try to add the customer
             boolean success = customerDao.addCustomer(customer);

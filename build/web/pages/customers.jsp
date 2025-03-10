@@ -122,7 +122,8 @@
                 <tbody>
                     <%
                         try {
-                            CustomerDAO customerDao = new CustomerDAO();
+                            // Use the Singleton instance of CustomerDAO
+                            CustomerDAO customerDao = CustomerDAO.getInstance();
                             List<Customer> customers = customerDao.getAllCustomers();
 
                             if (customers.isEmpty()) {
@@ -142,7 +143,7 @@
                             <td class="action-buttons">
                                 <!-- Edit Button -->
                                 <a href="editCustomer.jsp?customerId=<%= customer.getCustomerId() %>" class="btn btn-warning btn-sm">Edit</a>
-                                
+                                 
                                 <!-- Delete Button with Confirmation -->
                                 <form action="DeleteCustomerServlet" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this customer?');">
                                     <input type="hidden" name="customerId" value="<%= customer.getCustomerId() %>">

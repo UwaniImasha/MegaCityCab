@@ -2,7 +2,6 @@ package com.megacitycab.controller;
 
 import com.megacitycab.dao.CustomerDAO;
 import com.megacitycab.model.Customer;
-import com.megacitycab.util.DBConnection;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -10,8 +9,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.sql.Connection;
-
 
 @WebServlet("/pages/EditCustomerServlet")
 public class EditCustomerServlet extends HttpServlet {
@@ -25,12 +22,16 @@ public class EditCustomerServlet extends HttpServlet {
         String customerPhone = request.getParameter("customerPhone");
 
         try {
-            Connection connection = DBConnection.getConnection();
-            CustomerDAO customerDao = new CustomerDAO(connection);
-            
+            // Use the Singleton instance of CustomerDAO
+            CustomerDAO customerDao = CustomerDAO.getInstance();  // Get the singleton instance
+
+            // Create a customer object with the updated information
             Customer customer = new Customer(customerId, customerName, customerAddress, customerPhone);  
+            
+            // Update the customer
             boolean updated = customerDao.updateCustomer(customer);
 
+            // Redirect based on whether the update was successful or not
             if (updated) {
                 response.sendRedirect("customers.jsp?success=Customer updated successfully");
             } else {
@@ -42,5 +43,3 @@ public class EditCustomerServlet extends HttpServlet {
         }
     }
 }
-
-

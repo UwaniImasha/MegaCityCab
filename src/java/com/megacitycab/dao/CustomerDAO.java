@@ -7,20 +7,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerDAO {
+    private static CustomerDAO instance;  // Singleton instance
     private Connection connection;
 
-    // Default constructor
-    public CustomerDAO() {
+    // Private constructor to prevent direct instantiation
+    private CustomerDAO() {
         try {
             this.connection = DBConnection.getConnection();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    // Constructor with connection
-    public CustomerDAO(Connection con) {
-        this.connection = con;
+    // Public method to get the singleton instance
+    public static CustomerDAO getInstance() {
+        if (instance == null) {
+            synchronized (CustomerDAO.class) {
+                if (instance == null) {  // Double-checked locking for thread safety
+                    instance = new CustomerDAO();
+                }
+            }
+        }
+        return instance;
     }
 
     // Add new customer to the database

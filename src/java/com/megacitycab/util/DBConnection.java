@@ -10,7 +10,7 @@ public class DBConnection {
     private static final String USER = "root";  // Database username
     private static final String PASSWORD = "Uwani@123";  // Database password
 
-    // Method to establish a connection to the database
+    // Method to get the database connection ----> (Singleton)
     public static Connection getConnection() throws SQLException {
         try {
             // Register JDBC driver

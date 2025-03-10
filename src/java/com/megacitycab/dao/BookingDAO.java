@@ -94,13 +94,13 @@ public class BookingDAO {
                             rs.getString("phone"),
                             rs.getString("pickupLocation"),
                             rs.getString("destination"),
-                            rs.getString("dateTime"),  // Retrieve as String
+                            rs.getString("dateTime"),  
                             rs.getString("fare")
                     );
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();  // Log detailed errors here
+            e.printStackTrace();  
         }
         return booking;
     }

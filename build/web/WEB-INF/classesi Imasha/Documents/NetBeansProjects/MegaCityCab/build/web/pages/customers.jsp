@@ -1,12 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page session="true" %>
-<%@ page import="com.megacitycab.dao.CarDAO, com.megacitycab.model.Car, java.util.List" %>
+<%@ page import="com.megacitycab.dao.CustomerDAO, com.megacitycab.model.Customer, java.util.List" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Cars - Mega City Cab</title>
+    <title>View Customers - Mega City Cab</title>
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -98,61 +98,76 @@
         .text-center .btn {
             margin-top: 20px;
         }
+
+        .alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1050;
+            width: auto;
+            min-width: 200px;
+        }
     </style>
 </head>
 
 <body>
 
     <div class="main-content">
-        <div class="header">Car Details</div>
+        <div class="header">Customer Details</div>
+
+        <!-- Success Alert Message -->
+        <%
+            String success = request.getParameter("success");
+            if ("true".equals(success)) {
+        %>
+            <div class="alert alert-success alert-dismissible fade show" role="alert" id="successAlert">
+                Customer added successfully!
+            </div>
+        <%
+            }
+        %>
 
         <div class="container table-container">
-            <h4 class="text-center">Registered Cars</h4>
+            <h4 class="text-center">Registered Customers</h4>
 
             <table class="table table-striped">
                 <thead class="table-dark">
                     <tr>
-                        <th>Car ID</th>
-                        <th>Model</th>
-                        <th>Registration No</th>
-                        <th>Car Type</th>
-                        <th>Model Year</th>
-                        <th>Fuel Type</th>
-                        <th>Availability</th>
+                        <th>Customer ID</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Phone</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <%
                         try {
-                            CarDAO carDao = CarDAO.getInstance();
-                            List<Car> cars = carDao.getAllCars();
+                            // Use the Singleton instance of CustomerDAO
+                            CustomerDAO customerDao = CustomerDAO.getInstance();
+                            List<Customer> customers = customerDao.getAllCustomers();
 
-                            if (cars.isEmpty()) {
+                            if (customers.isEmpty()) {
                     %>
                         <tr>
-                            <td colspan="8" class="text-center text-danger">No cars found.</td>
+                            <td colspan="5" class="text-center text-danger">No customers found.</td>
                         </tr>
                     <%
                             } else {
-                                for (Car car : cars) {
+                                for (Customer customer : customers) {
                     %>
                         <tr>
-                            <td><%= car.getCarId() %></td>
-                            <td><%= car.getModel() %></td>
-                            <td><%= car.getRegistrationNo() %></td>
-                            <td><%= car.getCarType() %></td>
-                            <td><%= car.getModelYear() %></td>
-                            <td><%= car.getFuelType() %></td>
-                            <td><%= car.getAvailability() %></td>
+                            <td><%= customer.getCustomerId() %></td>
+                            <td><%= customer.getCustomerName() %></td>
+                            <td><%= customer.getCustomerAddress() %></td>
+                            <td><%= customer.getCustomerPhone() %></td>
                             <td class="action-buttons">
                                 <!-- Edit Button -->
-                                <a href="editCar.jsp?carId=<%= car.getCarId() %>" class="btn btn-warning btn-sm">Edit</a>
-                                
-
+                                <a href="editCustomer.jsp?customerId=<%= customer.getCustomerId() %>" class="btn btn-warning btn-sm">Edit</a>
+                                 
                                 <!-- Delete Button with Confirmation -->
-                                <form action="DeleteCarServlet" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this car?');">
-                                    <input type="hidden" name="carId" value="<%= car.getCarId() %>">
+                                <form action="DeleteCustomerServlet" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this customer?');">
+                                    <input type="hidden" name="customerId" value="<%= customer.getCustomerId() %>">
                                     <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                 </form>
                             </td>
@@ -163,7 +178,7 @@
                         } catch (Exception e) {
                     %>
                         <tr>
-                            <td colspan="8" class="text-center text-danger">Error fetching car data.</td>
+                            <td colspan="5" class="text-center text-danger">Error fetching customer data.</td>
                         </tr>
                     <%
                             e.printStackTrace();
@@ -173,7 +188,7 @@
             </table>
 
             <div class="text-center">
-                <a href="addCar.jsp" class="btn btn-success">Add New Car</a>
+                <a href="addCustomers.jsp" class="btn btn-success">Add New Customer</a>
                 <a href="dashboard.jsp" class="btn btn-primary">Go to Dashboard</a>
             </div>
 
@@ -182,6 +197,16 @@
 
     <!-- Bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Auto-hide the success alert after 5 seconds
+        setTimeout(function() {
+            var alert = document.getElementById('successAlert');
+            if (alert) {
+                alert.classList.remove('show');
+            }
+        }, 5000); // 5000 milliseconds = 5 seconds
+    </script>
 
 </body>
 </html>

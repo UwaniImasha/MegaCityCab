@@ -24,7 +24,7 @@ public class DeleteCustomerServlet extends HttpServlet {
             // Delete the customer
             boolean deleted = customerDao.deleteCustomer(customerId);
 
-            // Redirect based on whether the deletion was successful or not
+            // show the message
             if (deleted) {
                 response.sendRedirect("customers.jsp?success=Customer deleted successfully");
             } else {

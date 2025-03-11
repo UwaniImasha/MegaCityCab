@@ -52,7 +52,7 @@
 
                 try {
                     if (customerId != null) {
-                        CustomerDAO customerDao = new CustomerDAO();
+                        CustomerDAO customerDao = CustomerDAO.getInstance();
                         customer = customerDao.getCustomerById(customerId); // Pass customerId as a String
                     }
                 } catch (Exception e) {

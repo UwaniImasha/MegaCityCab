@@ -98,6 +98,15 @@
         .text-center .btn {
             margin-top: 20px;
         }
+
+        .alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1050;
+            width: auto;
+            min-width: 200px;
+        }
     </style>
 </head>
 
@@ -105,6 +114,18 @@
 
     <div class="main-content">
         <div class="header">Customer Details</div>
+
+        <!-- Success Alert Message -->
+        <%
+            String success = request.getParameter("success");
+            if ("true".equals(success)) {
+        %>
+            <div class="alert alert-success alert-dismissible fade show" role="alert" id="successAlert">
+                Customer added successfully!
+            </div>
+        <%
+            }
+        %>
 
         <div class="container table-container">
             <h4 class="text-center">Registered Customers</h4>
@@ -176,6 +197,16 @@
 
     <!-- Bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Auto-hide the success alert after 5 seconds
+        setTimeout(function() {
+            var alert = document.getElementById('successAlert');
+            if (alert) {
+                alert.classList.remove('show');
+            }
+        }, 5000); // 5000 milliseconds = 5 seconds
+    </script>
 
 </body>
 </html>

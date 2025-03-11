@@ -199,7 +199,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // alert
+        // Auto-dismiss the success alert after 2 seconds
         setTimeout(function() {
             var alert = document.getElementById('successAlert');
             if (alert) {

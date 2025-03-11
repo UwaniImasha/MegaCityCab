@@ -21,10 +21,8 @@ public class DeleteBookingServlet extends HttpServlet {
             // Get the Singleton instance of BookingDAO
             BookingDAO bookingDao = BookingDAO.getInstance();
             
-            // Delete the booking from the database
             boolean deleted = bookingDao.deleteBooking(bookingNumber);
 
-            // Redirect based on the result of the delete operation
             if (deleted) {
                 response.sendRedirect("booking.jsp?success=Booking deleted successfully");
             } else {

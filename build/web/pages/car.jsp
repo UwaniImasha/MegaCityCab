@@ -98,6 +98,15 @@
         .text-center .btn {
             margin-top: 20px;
         }
+
+        .alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1050;
+            width: auto;
+            min-width: 200px;
+        }
     </style>
 </head>
 
@@ -105,6 +114,18 @@
 
     <div class="main-content">
         <div class="header">Car Details</div>
+
+        <!-- Success Alert Message -->
+        <%
+            String success = request.getParameter("success");
+            if ("true".equals(success)) {
+        %>
+            <div class="alert alert-success alert-dismissible fade show" role="alert" id="successAlert">
+                Car added successfully!
+            </div>
+        <%
+            }
+        %>
 
         <div class="container table-container">
             <h4 class="text-center">Registered Cars</h4>
@@ -149,7 +170,6 @@
                                 <!-- Edit Button -->
                                 <a href="editCar.jsp?carId=<%= car.getCarId() %>" class="btn btn-warning btn-sm">Edit</a>
                                 
-
                                 <!-- Delete Button with Confirmation -->
                                 <form action="DeleteCarServlet" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this car?');">
                                     <input type="hidden" name="carId" value="<%= car.getCarId() %>">
@@ -182,6 +202,16 @@
 
     <!-- Bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // auto dismiss success alert after 2 seconds
+        setTimeout(function() {
+            var alert = document.getElementById('successAlert');
+            if (alert) {
+                alert.classList.remove('show');
+            }
+        }, 2000); // 2 seconds
+    </script>
 
 </body>
 </html>

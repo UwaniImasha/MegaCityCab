@@ -38,8 +38,8 @@
         }
 
         .table th, .table td {
-            text-align: center; 
-            vertical-align: middle; 
+            text-align: left;
+            padding: 15px;
         }
 
         .table th {
@@ -53,8 +53,7 @@
 
         .action-buttons {
             display: flex;
-            flex-direction: column;
-            gap: 5px;
+            justify-content: space-between;
         }
 
         .btn-custom {
@@ -65,9 +64,10 @@
             font-size: 12px;
             border-radius: 5px;
             text-decoration: none;
-            display: block;
-            text-align: center;
-            width: 100%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            height: 30px;
         }
 
         .btn-custom:hover {
@@ -84,20 +84,15 @@
             font-size: 12px;
             border-radius: 5px;
             text-decoration: none;
-            display: block;
-            text-align: center;
-            width: 100%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            height: 30px;
         }
 
         .btn-danger:hover {
             background-color: #c0392b;
             border-color: #c0392b;
-        }
-
-        .btn-warning {
-            display: block;
-            text-align: center;
-            width: 100%;
         }
 
         .text-center .btn {
@@ -126,14 +121,14 @@
             if ("true".equals(success)) {
         %>
             <div class="alert alert-success alert-dismissible fade show" role="alert" id="successAlert">
-                Booking successful!
+                Booking added successfully!
             </div>
         <%
             }
         %>
 
         <div class="container table-container">
-            <h4 class="text-center">All Bookings</h4>
+            <h4 class="text-center">Booking Information</h4>
 
             <table class="table table-striped">
                 <thead class="table-dark">
@@ -142,7 +137,6 @@
                         <th>Customer ID</th>
                         <th>Driver ID</th>
                         <th>Car ID</th>
-                        <th>Phone</th>
                         <th>Pickup Location</th>
                         <th>Destination</th>
                         <th>Date & Time</th>
@@ -153,13 +147,13 @@
                 <tbody>
                     <%
                         try {
-                            BookingDAO bookingDao = new BookingDAO();
+                            BookingDAO bookingDao = BookingDAO.getInstance();
                             List<Booking> bookings = bookingDao.getAllBookings();
 
                             if (bookings.isEmpty()) {
                     %>
                         <tr>
-                            <td colspan="10" class="text-center text-danger">No bookings found.</td>
+                            <td colspan="9" class="text-center text-danger">No bookings found.</td>
                         </tr>
                     <%
                             } else {
@@ -170,24 +164,16 @@
                             <td><%= booking.getCustomerId() %></td>
                             <td><%= booking.getDriverId() %></td>
                             <td><%= booking.getCarId() %></td>
-                            <td><%= booking.getPhone() %></td>
                             <td><%= booking.getPickupLocation() %></td>
                             <td><%= booking.getDestination() %></td>
                             <td><%= booking.getDateTime() %></td>
                             <td><%= booking.getFare() %></td>
                             <td class="action-buttons">
-                                 
-                                <form action="calculateBill.jsp" method="post">
-                                    <input type="hidden" name="bookingNumber" value="<%= booking.getBookingNumber() %>">
-                                    <input type="hidden" name="fare" value="<%= booking.getFare() %>">
-                                    <button type="submit" class="btn btn-custom btn-sm">Calculate Bill</button>
-                                </form>
-
                                 <!-- Edit Button -->
                                 <a href="editBooking.jsp?bookingNumber=<%= booking.getBookingNumber() %>" class="btn btn-warning btn-sm">Edit</a>
-
+                                
                                 <!-- Delete Button with Confirmation -->
-                                <form action="DeleteBookingServlet" method="post" onsubmit="return confirm('Are you sure you want to delete this booking?');">
+                                <form action="DeleteBookingServlet" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this booking?');">
                                     <input type="hidden" name="bookingNumber" value="<%= booking.getBookingNumber() %>">
                                     <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                 </form>
@@ -199,7 +185,7 @@
                         } catch (Exception e) {
                     %>
                         <tr>
-                            <td colspan="10" class="text-center text-danger">Error fetching booking data.</td>
+                            <td colspan="9" class="text-center text-danger">Error fetching booking data.</td>
                         </tr>
                     <%
                             e.printStackTrace();
@@ -220,13 +206,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // alert
+        // auto dismiss success alert after 2 seconds
         setTimeout(function() {
             var alert = document.getElementById('successAlert');
             if (alert) {
                 alert.classList.remove('show');
             }
-        }, 2000); 
+        }, 2000); // 2 seconds
     </script>
 
 </body>

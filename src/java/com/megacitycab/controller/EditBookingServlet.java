@@ -2,7 +2,6 @@ package com.megacitycab.controller;
 
 import com.megacitycab.dao.BookingDAO;
 import com.megacitycab.model.Booking;
-import com.megacitycab.util.DBConnection;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -10,7 +9,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.sql.Connection;
 
 @WebServlet("/pages/EditBookingServlet")
 public class EditBookingServlet extends HttpServlet {
@@ -30,9 +28,8 @@ public class EditBookingServlet extends HttpServlet {
         String fare = request.getParameter("fare");
 
         try {
-            // Get the connection to the database
-            Connection connection = DBConnection.getConnection();
-            BookingDAO bookingDao = new BookingDAO(connection);
+            // Get the Singleton instance of BookingDAO
+            BookingDAO bookingDao = BookingDAO.getInstance();
 
             // Create a Booking object with the data from the form
             Booking booking = new Booking(bookingNumber, customerId, driverId, carId, phone, pickupLocation, destination, dateTime, fare);

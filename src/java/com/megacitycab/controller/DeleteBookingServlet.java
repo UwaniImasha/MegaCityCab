@@ -1,7 +1,6 @@
 package com.megacitycab.controller;
 
 import com.megacitycab.dao.BookingDAO;
-import com.megacitycab.util.DBConnection;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -9,7 +8,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.sql.Connection;
 
 @WebServlet("/pages/DeleteBookingServlet")
 public class DeleteBookingServlet extends HttpServlet {
@@ -20,9 +18,8 @@ public class DeleteBookingServlet extends HttpServlet {
         String bookingNumber = request.getParameter("bookingNumber");
 
         try {
-            // Get the connection to the database
-            Connection connection = DBConnection.getConnection();
-            BookingDAO bookingDao = new BookingDAO(connection);
+            // Get the Singleton instance of BookingDAO
+            BookingDAO bookingDao = BookingDAO.getInstance();
             
             // Delete the booking from the database
             boolean deleted = bookingDao.deleteBooking(bookingNumber);

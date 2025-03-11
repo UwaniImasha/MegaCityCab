@@ -162,7 +162,6 @@
                                     <button type="submit" class="btn btn-custom btn-sm">Calculate Bill</button>
                                 </form>
 
-
                                 <!-- Edit Button -->
                                 <a href="editBooking.jsp?bookingNumber=<%= booking.getBookingNumber() %>" class="btn btn-warning btn-sm">Edit</a>
 

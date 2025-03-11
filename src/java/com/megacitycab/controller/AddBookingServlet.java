@@ -38,8 +38,8 @@ public class AddBookingServlet extends HttpServlet {
             // Create a new booking object
             Booking booking = new Booking(bookingNumber, customerId, driverId, carId, phone, pickupLocation, destination, dateTime, fare);
             
-            // Create a DAO instance to interact with the database
-            BookingDAO bookingDao = new BookingDAO();
+            // Get the Singleton instance of BookingDAO
+            BookingDAO bookingDao = BookingDAO.getInstance();
 
             // Try to add the booking
             boolean success = bookingDao.addBooking(booking);

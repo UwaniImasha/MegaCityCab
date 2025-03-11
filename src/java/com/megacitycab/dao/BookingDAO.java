@@ -7,20 +7,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookingDAO {
+    private static BookingDAO instance;
     private Connection connection;
 
-    // Default constructor
+    // public constructor to prevent instantiation from other classes
     public BookingDAO() {
         try {
             this.connection = DBConnection.getConnection();
         } catch (Exception e) {
-            e.printStackTrace(); // Consider logging this
+            e.printStackTrace(); // Log detailed errors here
         }
     }
 
-    // Constructor with connection
-    public BookingDAO(Connection con) {
-        this.connection = con;
+    // Singleton instance retrieval method
+    public static BookingDAO getInstance() {
+        if (instance == null) {
+            synchronized (BookingDAO.class) {
+                if (instance == null) {
+                    instance = new BookingDAO();
+                }
+            }
+        }
+        return instance;
     }
 
     // Add a new booking to the database
@@ -39,17 +47,11 @@ public class BookingDAO {
             ps.setString(9, booking.getFare());
 
             int rowsAffected = ps.executeUpdate();
-            if (rowsAffected > 0) {
-                System.out.println("Booking added successfully!");
-                return true;
-            } else {
-                System.out.println("Failed to add booking.");
-                return false;
-            }
+            return rowsAffected > 0;
         } catch (SQLException e) {
             e.printStackTrace();  // Log detailed errors here
-            return false;
         }
+        return false;
     }
 
     // Get all bookings from the database
@@ -107,26 +109,25 @@ public class BookingDAO {
 
     // Update an existing booking
     public boolean updateBooking(Booking booking) {
-    String query = "UPDATE booking SET customerId=?, driverId=?, carId=?, phone=?, pickupLocation=?, destination=?, dateTime=?, fare=? WHERE bookingNumber=?";
-    try (PreparedStatement ps = connection.prepareStatement(query)) {
-        ps.setString(1, booking.getCustomerId());
-        ps.setString(2, booking.getDriverId());
-        ps.setString(3, booking.getCarId());
-        ps.setString(4, booking.getPhone());
-        ps.setString(5, booking.getPickupLocation());
-        ps.setString(6, booking.getDestination());
-        ps.setString(7, booking.getDateTime());
-        ps.setString(8, booking.getFare());
-        ps.setString(9, booking.getBookingNumber());
+        String query = "UPDATE booking SET customerId=?, driverId=?, carId=?, phone=?, pickupLocation=?, destination=?, dateTime=?, fare=? WHERE bookingNumber=?";
+        try (PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setString(1, booking.getCustomerId());
+            ps.setString(2, booking.getDriverId());
+            ps.setString(3, booking.getCarId());
+            ps.setString(4, booking.getPhone());
+            ps.setString(5, booking.getPickupLocation());
+            ps.setString(6, booking.getDestination());
+            ps.setString(7, booking.getDateTime());
+            ps.setString(8, booking.getFare());
+            ps.setString(9, booking.getBookingNumber());
 
-        int rowsAffected = ps.executeUpdate();
-        return rowsAffected > 0;
-    } catch (SQLException e) {
-        e.printStackTrace();
+            int rowsAffected = ps.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
-    return false;
-}
-
 
     // Delete a booking from the database
     public boolean deleteBooking(String bookingNumber) {
@@ -134,12 +135,22 @@ public class BookingDAO {
         try (PreparedStatement ps = connection.prepareStatement(query)) {
             ps.setString(1, bookingNumber);
             int rowsAffected = ps.executeUpdate();
-            if (rowsAffected > 0) {
-                System.out.println("Booking deleted successfully!");
-                return true;
-            } else {
-                System.out.println("Failed to delete booking.");
-                return false;
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();  // Log detailed errors here
+        }
+        return false;
+    }
+    
+    // Public method to check if a booking exists by booking number
+    public boolean bookingExists(String bookingNumber) {
+        String query = "SELECT COUNT(*) FROM booking WHERE bookingNumber=?";
+        try (PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setString(1, bookingNumber);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0; // Returns true if booking exists
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();  // Log detailed errors here

@@ -103,6 +103,15 @@
         .text-center .btn {
             margin-top: 20px;
         }
+
+        .alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1050;
+            width: auto;
+            min-width: 200px;
+        }
     </style>
 </head>
 
@@ -110,6 +119,18 @@
 
     <div class="main-content">
         <div class="header">Booking Details</div>
+
+        <!-- Success Alert Message -->
+        <%
+            String success = request.getParameter("success");
+            if ("true".equals(success)) {
+        %>
+            <div class="alert alert-success alert-dismissible fade show" role="alert" id="successAlert">
+                Booking successful!
+            </div>
+        <%
+            }
+        %>
 
         <div class="container table-container">
             <h4 class="text-center">All Bookings</h4>
@@ -155,7 +176,7 @@
                             <td><%= booking.getDateTime() %></td>
                             <td><%= booking.getFare() %></td>
                             <td class="action-buttons">
-                                
+                                 
                                 <form action="calculateBill.jsp" method="post">
                                     <input type="hidden" name="bookingNumber" value="<%= booking.getBookingNumber() %>">
                                     <input type="hidden" name="fare" value="<%= booking.getFare() %>">
@@ -197,6 +218,16 @@
 
     <!-- Bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // alert
+        setTimeout(function() {
+            var alert = document.getElementById('successAlert');
+            if (alert) {
+                alert.classList.remove('show');
+            }
+        }, 2000); 
+    </script>
 
 </body>
 </html>

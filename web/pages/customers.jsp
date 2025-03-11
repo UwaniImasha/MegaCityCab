@@ -199,13 +199,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // Auto-hide the success alert after 5 seconds
+        // alert
         setTimeout(function() {
             var alert = document.getElementById('successAlert');
             if (alert) {
                 alert.classList.remove('show');
             }
-        }, 5000); // 5000 milliseconds = 5 seconds
+        }, 2000); // 2 seconds
     </script>
 
 </body>

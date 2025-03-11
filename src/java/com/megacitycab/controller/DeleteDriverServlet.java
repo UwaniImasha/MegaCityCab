@@ -20,7 +20,7 @@ public class DeleteDriverServlet extends HttpServlet {
 
         try {
             Connection connection = DBConnection.getConnection();
-            DriverDAO driverDao = new DriverDAO(connection);
+            DriverDAO driverDao = DriverDAO.getInstance();
             
             boolean deleted = driverDao.deleteDriver(driverId);
 

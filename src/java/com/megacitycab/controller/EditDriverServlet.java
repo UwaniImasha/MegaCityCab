@@ -30,7 +30,7 @@ public class EditDriverServlet extends HttpServlet {
             Driver driver = new Driver(driverId, dName, licenseNo, contactNo);  
 
             
-            DriverDAO driverDao = new DriverDAO();
+            DriverDAO driverDao = DriverDAO.getInstance();
             boolean isUpdated = driverDao.updateDriver(driver);
 
             

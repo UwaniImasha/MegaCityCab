@@ -7,10 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CarDAO {
+    private static CarDAO instance; // Singleton instance
     private Connection connection;
 
-    // Default constructor
-    public CarDAO() {
+    // Private constructor to prevent instantiation
+    private CarDAO() {
         try {
             this.connection = DBConnection.getConnection();
         } catch (Exception e) {
@@ -18,9 +19,12 @@ public class CarDAO {
         }
     }
 
-    // Constructor with connection
-    public CarDAO(Connection con) {
-        this.connection = con;
+    // Public method to return the Singleton instance
+    public static synchronized CarDAO getInstance() {
+        if (instance == null) {
+            instance = new CarDAO();
+        }
+        return instance;
     }
 
     // Add new car to the database
@@ -33,18 +37,12 @@ public class CarDAO {
             ps.setString(4, car.getCarType());
             ps.setInt(5, car.getModelYear());
             ps.setString(6, car.getFuelType());
-            ps.setString(7, car.getAvailability()); // Updated from boolean to String
-            
+            ps.setString(7, car.getAvailability());
+
             int rowsAffected = ps.executeUpdate();
-            if (rowsAffected > 0) {
-                System.out.println("Car added successfully!");
-                return true;
-            } else {
-                System.out.println("Failed to add car.");
-                return false;
-            }
+            return rowsAffected > 0;
         } catch (SQLException e) {
-            e.printStackTrace();  // Log detailed errors here
+            e.printStackTrace();
             return false;
         }
     }
@@ -55,7 +53,6 @@ public class CarDAO {
         String query = "SELECT * FROM car";
         try (PreparedStatement ps = connection.prepareStatement(query);
              ResultSet rs = ps.executeQuery()) {
-
             while (rs.next()) {
                 cars.add(new Car(
                         rs.getString("carId"),
@@ -64,13 +61,12 @@ public class CarDAO {
                         rs.getString("carType"),
                         rs.getInt("modelYear"),
                         rs.getString("fuelType"),
-                        rs.getString("availability") // Updated from boolean to String
+                        rs.getString("availability")
                 ));
             }
         } catch (SQLException e) {
-            e.printStackTrace();  // Log detailed errors here
+            e.printStackTrace();
         }
-        System.out.println("Number of cars fetched: " + cars.size());
         return cars;
     }
 
@@ -89,12 +85,12 @@ public class CarDAO {
                             rs.getString("carType"),
                             rs.getInt("modelYear"),
                             rs.getString("fuelType"),
-                            rs.getString("availability") // Updated from boolean to String
+                            rs.getString("availability")
                     );
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();  // Log detailed errors here
+            e.printStackTrace();
         }
         return car;
     }
@@ -108,19 +104,13 @@ public class CarDAO {
             ps.setString(3, car.getCarType());
             ps.setInt(4, car.getModelYear());
             ps.setString(5, car.getFuelType());
-            ps.setString(6, car.getAvailability()); // Updated from boolean to String
+            ps.setString(6, car.getAvailability());
             ps.setString(7, car.getCarId());
-            
+
             int rowsAffected = ps.executeUpdate();
-            if (rowsAffected > 0) {
-                System.out.println("Car updated successfully!");
-                return true;
-            } else {
-                System.out.println("Failed to update car.");
-                return false;
-            }
+            return rowsAffected > 0;
         } catch (SQLException e) {
-            e.printStackTrace();  // Log detailed errors here
+            e.printStackTrace();
         }
         return false;
     }
@@ -131,15 +121,9 @@ public class CarDAO {
         try (PreparedStatement ps = connection.prepareStatement(query)) {
             ps.setString(1, carId);
             int rowsAffected = ps.executeUpdate();
-            if (rowsAffected > 0) {
-                System.out.println("Car deleted successfully!");
-                return true;
-            } else {
-                System.out.println("Failed to delete car.");
-                return false;
-            }
+            return rowsAffected > 0;
         } catch (SQLException e) {
-            e.printStackTrace();  // Log detailed errors here
+            e.printStackTrace();
         }
         return false;
     }

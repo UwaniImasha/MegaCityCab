@@ -44,7 +44,7 @@ public class EditCarServlet extends HttpServlet {
             Car car = new Car(carId, model, registrationNo, carType, modelYear, fuelType, availability);
 
             // Update in the database
-            CarDAO carDao = new CarDAO();
+            CarDAO carDao = CarDAO.getInstance();
             boolean isUpdated = carDao.updateCar(car);
 
             // Redirect based on update success or failure

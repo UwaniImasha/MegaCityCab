@@ -37,7 +37,7 @@ public class AddDriverServlet extends HttpServlet {
             Driver driver = new Driver(driverId, dName, license, contact);
             
             // Create a DAO instance to interact with the database
-            DriverDAO driverDao = new DriverDAO();
+            DriverDAO driverDao = DriverDAO.getInstance();
 
             // Try to add the driver
             boolean success = driverDao.addDriver(driver);

@@ -55,7 +55,7 @@ public class AddCarServlet extends HttpServlet {
             Car car = new Car(carId, model, registrationNo, carType, modelYear, fuelType, availability);
 
             // Create a DAO instance to interact with the database
-            CarDAO carDao = new CarDAO();
+            CarDAO carDao = CarDAO.getInstance();
 
             // Try to add the car
             boolean success = carDao.addCar(car);

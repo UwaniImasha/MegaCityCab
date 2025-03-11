@@ -72,7 +72,7 @@
                 <tbody>
                     <%
                         try {
-                            DriverDAO driverDao = new DriverDAO();
+                            DriverDAO driverDao = DriverDAO.getInstance();
                             List<Driver> drivers = driverDao.getAllDrivers();
 
                             if (drivers.isEmpty()) {

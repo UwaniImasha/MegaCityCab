@@ -52,7 +52,7 @@
 
                 try {
                     if (carId != null) {
-                        CarDAO carDao = new CarDAO();
+                        CarDAO carDao = CarDAO.getInstance();
                         car = carDao.getCarById(carId); 
                     }
                 } catch (Exception e) {

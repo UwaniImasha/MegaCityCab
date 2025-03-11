@@ -20,7 +20,8 @@ public class DeleteCarServlet extends HttpServlet {
 
         try {
             Connection connection = DBConnection.getConnection();
-            CarDAO carDao = new CarDAO(connection);
+            CarDAO carDao = CarDAO.getInstance();
+
             
             boolean deleted = carDao.deleteCar(carId);
 

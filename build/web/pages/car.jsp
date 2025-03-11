@@ -125,7 +125,7 @@
                 <tbody>
                     <%
                         try {
-                            CarDAO carDao = new CarDAO();
+                            CarDAO carDao = CarDAO.getInstance();
                             List<Car> cars = carDao.getAllCars();
 
                             if (cars.isEmpty()) {

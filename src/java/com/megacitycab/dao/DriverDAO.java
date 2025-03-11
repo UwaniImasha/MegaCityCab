@@ -7,10 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DriverDAO {
+    private static DriverDAO instance; // Singleton instance
     private Connection connection;
 
-    // Default constructor
-    public DriverDAO() {
+    // Private constructor to prevent instantiation
+    private DriverDAO() {
         try {
             this.connection = DBConnection.getConnection();
         } catch (Exception e) {
@@ -18,9 +19,12 @@ public class DriverDAO {
         }
     }
 
-    // Constructor with connection
-    public DriverDAO(Connection con) {
-        this.connection = con;
+    // Public method to return the Singleton instance
+    public static synchronized DriverDAO getInstance() {
+        if (instance == null) {
+            instance = new DriverDAO();
+        }
+        return instance;
     }
 
     // Add new driver to the database
@@ -31,10 +35,9 @@ public class DriverDAO {
             ps.setString(2, driver.getDName());
             ps.setString(3, driver.getLicenseNo());
             ps.setString(4, driver.getContactNo());
-            
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
-            e.printStackTrace();  // Consider logging this instead
+            e.printStackTrace();
             return false;
         }
     }
@@ -45,7 +48,7 @@ public class DriverDAO {
         String query = "SELECT * FROM driver";
         try (PreparedStatement ps = connection.prepareStatement(query);
              ResultSet rs = ps.executeQuery()) {
-            
+
             while (rs.next()) {
                 drivers.add(new Driver(
                         rs.getString("driverId"),
@@ -55,7 +58,7 @@ public class DriverDAO {
                 ));
             }
         } catch (SQLException e) {
-            e.printStackTrace();  // Consider logging this instead
+            e.printStackTrace();
         }
         return drivers;
     }
@@ -77,7 +80,7 @@ public class DriverDAO {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();  // Consider logging this instead
+            e.printStackTrace();
         }
         return driver;
     }
@@ -90,10 +93,9 @@ public class DriverDAO {
             ps.setString(2, driver.getLicenseNo());
             ps.setString(3, driver.getContactNo());
             ps.setString(4, driver.getDriverId());
-            
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
-            e.printStackTrace();  // Consider logging this instead
+            e.printStackTrace();
         }
         return false;
     }
@@ -105,7 +107,7 @@ public class DriverDAO {
             ps.setString(1, driverId);
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
-            e.printStackTrace();  // Consider logging this instead
+            e.printStackTrace();
         }
         return false;
     }

@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import com.megacitycab.util.DBConnection; 
+import com.megacitycab.util.DBConnection;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -23,8 +23,8 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        try (Connection conn = DBConnection.getConnection()) { 
-            // Query to check credentials without using 'id'
+        try (Connection conn = DBConnection.getConnection()) {
+            // Query to check credentials
             String sql = "SELECT username FROM users WHERE username=? AND password=?";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setString(1, username);
@@ -34,21 +34,21 @@ public class LoginServlet extends HttpServlet {
                     if (rs.next()) {
                         // User credentials are valid, store username in session
                         HttpSession session = request.getSession();
-                        session.setAttribute("username", username); // Store username
+                        session.setAttribute("username", username);
 
                         // Redirect to dashboard
                         response.sendRedirect("pages/dashboard.jsp");
                     } else {
-                        // Invalid credentials, forward with error message
+                        // Invalid credentials, show error on the same page
                         request.setAttribute("error", "Invalid username or password.");
-                        request.getRequestDispatcher("login.jsp").forward(request, response);
+                        request.getRequestDispatcher("login.jsp").include(request, response); // Show error message in the same page
                     }
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace(); // Log error
             request.setAttribute("error", "An error occurred. Please try again.");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            request.getRequestDispatcher("login.jsp").include(request, response); // Show error message in the same page
         }
     }
 }

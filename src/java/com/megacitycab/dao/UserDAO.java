@@ -11,7 +11,7 @@ public class UserDAO {
     public User authenticateUser(String username, String password) {
         User user = null;
 
-        // Database connection code (make sure to use your DB connection logic here)
+        // Database connection
         try (Connection con = DBConnection.getConnection()) {
             String query = "SELECT * FROM users WHERE username = ? AND password = ?";
             try (PreparedStatement stmt = con.prepareStatement(query)) {
@@ -22,7 +22,7 @@ public class UserDAO {
 
                 if (rs.next()) {
                     user = new User(rs.getString("username"), rs.getString("password"));
-                    // Add any additional fields to the User object as required
+                    
                 }
             }
         } catch (Exception e) {

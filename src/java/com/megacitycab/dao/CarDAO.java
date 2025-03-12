@@ -15,7 +15,7 @@ public class CarDAO {
         try {
             this.connection = DBConnection.getConnection();
         } catch (Exception e) {
-            e.printStackTrace(); // Consider logging this
+            e.printStackTrace();
         }
     }
 

@@ -43,13 +43,13 @@ public class BookingDAO {
             ps.setString(5, booking.getPhone());
             ps.setString(6, booking.getPickupLocation());
             ps.setString(7, booking.getDestination());
-            ps.setString(8, booking.getDateTime()); // store as String
+            ps.setString(8, booking.getDateTime()); 
             ps.setString(9, booking.getFare());
 
             int rowsAffected = ps.executeUpdate();
             return rowsAffected > 0;
         } catch (SQLException e) {
-            e.printStackTrace();  // Log detailed errors here
+            e.printStackTrace();  
         }
         return false;
     }

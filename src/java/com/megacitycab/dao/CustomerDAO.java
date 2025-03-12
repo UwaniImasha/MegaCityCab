@@ -23,7 +23,7 @@ public class CustomerDAO {
     public static CustomerDAO getInstance() {
         if (instance == null) {
             synchronized (CustomerDAO.class) {
-                if (instance == null) {  // Double-checked locking for thread safety
+                if (instance == null) {  
                     instance = new CustomerDAO();
                 }
             }
@@ -42,7 +42,7 @@ public class CustomerDAO {
 
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
-            e.printStackTrace();  // Consider logging this instead
+            e.printStackTrace();  
             return false;
         }
     }
@@ -63,7 +63,7 @@ public class CustomerDAO {
                 ));
             }
         } catch (SQLException e) {
-            e.printStackTrace();  // Consider logging this instead
+            e.printStackTrace();  
         }
         return customers;
     }
@@ -85,7 +85,7 @@ public class CustomerDAO {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();  // Consider logging this instead
+            e.printStackTrace(); 
         }
         return customer;
     }
@@ -113,7 +113,7 @@ public class CustomerDAO {
             ps.setString(1, customerId);
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
-            e.printStackTrace();  // Consider logging this instead
+            e.printStackTrace();  
         }
         return false;
     }

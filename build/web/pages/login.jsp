@@ -38,12 +38,27 @@
         h2 {
             font-size: 28px;
         }
+        .error-message {
+            color: red;
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 
 <body>
     <div class="login-container">
         <h2 class="text-center text-warning">Admin Login</h2>
+
+        <!-- Display the error message if exists -->
+        <% 
+            String error = (String) request.getAttribute("error"); 
+            if (error != null) { 
+        %>
+            <div class="error-message"><%= error %></div>
+        <% } %>
+
         <form action="/MegaCityCab/LoginServlet" method="post">
             <div class="mb-4">
                 <label for="username" class="form-label">Username</label>
@@ -53,13 +68,6 @@
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
-
-            <% 
-               String error = (String) request.getAttribute("error"); 
-               if (error != null) { 
-            %>
-                <p class="text-danger text-center fs-5"><%= error %></p>
-            <% } %>
 
             <button type="submit" class="btn btn-custom w-100">Login</button>
         </form>

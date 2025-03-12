@@ -38,8 +38,8 @@
         }
 
         .table th, .table td {
-            text-align: left;
-            padding: 15px;
+            text-align: center; 
+            vertical-align: middle; 
         }
 
         .table th {
@@ -53,7 +53,8 @@
 
         .action-buttons {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            gap: 5px;
         }
 
         .btn-custom {
@@ -64,10 +65,9 @@
             font-size: 12px;
             border-radius: 5px;
             text-decoration: none;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            height: 30px;
+            display: block;
+            text-align: center;
+            width: 100%;
         }
 
         .btn-custom:hover {
@@ -84,10 +84,9 @@
             font-size: 12px;
             border-radius: 5px;
             text-decoration: none;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            height: 30px;
+            display: block;
+            text-align: center;
+            width: 100%;
         }
 
         .btn-danger:hover {
@@ -95,8 +94,10 @@
             border-color: #c0392b;
         }
 
-        .text-center .btn {
-            margin-top: 20px;
+        .btn-warning {
+            display: block;
+            text-align: center;
+            width: 100%;
         }
 
         .alert {
@@ -105,7 +106,12 @@
             right: 20px;
             z-index: 1050;
             width: auto;
-            min-width: 200px;
+            min-width: 180px;
+            font-size: 14px;
+        }
+
+        .text-center .btn {
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -128,7 +134,7 @@
         %>
 
         <div class="container table-container">
-            <h4 class="text-center">Booking Information</h4>
+            <h4 class="text-center">All Bookings</h4>
 
             <table class="table table-striped">
                 <thead class="table-dark">
@@ -137,6 +143,7 @@
                         <th>Customer ID</th>
                         <th>Driver ID</th>
                         <th>Car ID</th>
+                        <th>Phone</th>
                         <th>Pickup Location</th>
                         <th>Destination</th>
                         <th>Date & Time</th>
@@ -147,13 +154,13 @@
                 <tbody>
                     <%
                         try {
-                            BookingDAO bookingDao = BookingDAO.getInstance();
+                            BookingDAO bookingDao = new BookingDAO();
                             List<Booking> bookings = bookingDao.getAllBookings();
 
                             if (bookings.isEmpty()) {
                     %>
                         <tr>
-                            <td colspan="9" class="text-center text-danger">No bookings found.</td>
+                            <td colspan="10" class="text-center text-danger">No bookings found.</td>
                         </tr>
                     <%
                             } else {
@@ -164,16 +171,24 @@
                             <td><%= booking.getCustomerId() %></td>
                             <td><%= booking.getDriverId() %></td>
                             <td><%= booking.getCarId() %></td>
+                            <td><%= booking.getPhone() %></td>
                             <td><%= booking.getPickupLocation() %></td>
                             <td><%= booking.getDestination() %></td>
                             <td><%= booking.getDateTime() %></td>
                             <td><%= booking.getFare() %></td>
                             <td class="action-buttons">
+                                 
+                                <form action="calculateBill.jsp" method="post">
+                                    <input type="hidden" name="bookingNumber" value="<%= booking.getBookingNumber() %>">
+                                    <input type="hidden" name="fare" value="<%= booking.getFare() %>">
+                                    <button type="submit" class="btn btn-custom btn-sm">Calculate Bill</button>
+                                </form>
+
                                 <!-- Edit Button -->
                                 <a href="editBooking.jsp?bookingNumber=<%= booking.getBookingNumber() %>" class="btn btn-warning btn-sm">Edit</a>
-                                
+
                                 <!-- Delete Button with Confirmation -->
-                                <form action="DeleteBookingServlet" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this booking?');">
+                                <form action="DeleteBookingServlet" method="post" onsubmit="return confirm('Are you sure you want to delete this booking?');">
                                     <input type="hidden" name="bookingNumber" value="<%= booking.getBookingNumber() %>">
                                     <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                 </form>
@@ -185,7 +200,7 @@
                         } catch (Exception e) {
                     %>
                         <tr>
-                            <td colspan="9" class="text-center text-danger">Error fetching booking data.</td>
+                            <td colspan="10" class="text-center text-danger">Error fetching booking data.</td>
                         </tr>
                     <%
                             e.printStackTrace();
@@ -206,13 +221,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // auto dismiss success alert after 2 seconds
+        // alert
         setTimeout(function() {
             var alert = document.getElementById('successAlert');
             if (alert) {
                 alert.classList.remove('show');
             }
-        }, 2000); // 2 seconds
+        }, 2000); 
     </script>
 
 </body>

@@ -1,13 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page session="true" %>
-<%@ page import="com.megacitycab.dao.DriverDAO, com.megacitycab.model.Driver" %>
+<%@ page import="com.megacitycab.dao.CustomerDAO, com.megacitycab.model.Customer" %>
 <%@ page import="java.sql.SQLException" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Driver - Mega City Cab</title>
+    <title>Edit Customer - Mega City Cab</title>
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -43,49 +43,49 @@
 <body>
 
     <div class="main-content">
-        <div class="header">Edit Driver</div>
+        <div class="header">Edit Customer</div>
 
         <div class="container form-container">
             <%
-                String driverId = request.getParameter("driverId");
-                Driver driver = null;
+                String customerId = request.getParameter("customerId"); // customerId is a String
+                Customer customer = null;
 
                 try {
-                    if (driverId != null) {
-                        DriverDAO driverDao = DriverDAO.getInstance(); // Use singleton pattern if applicable
-                        driver = driverDao.getDriverById(driverId);
+                    if (customerId != null) {
+                        CustomerDAO customerDao = CustomerDAO.getInstance();
+                        customer = customerDao.getCustomerById(customerId); // Pass customerId as a String
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 
-                if (driver != null) {
+                if (customer != null) {
             %>
-            <form action="EditDriverServlet" method="post">
-                <input type="hidden" name="driverId" value="<%= driver.getDriverId() %>">
+            <form action="EditCustomerServlet" method="post">
+                <input type="hidden" name="customerId" value="<%= customer.getCustomerId() %>">
 
                 <div class="mb-3">
-                    <label for="dName" class="form-label">Driver Name</label>  
-                    <input type="text" class="form-control" id="dName" name="driverName" value="<%= driver.getDName() %>" required> 
+                    <label for="customerName" class="form-label">Customer Name</label>
+                    <input type="text" class="form-control" id="customerName" name="customerName" value="<%= customer.getCustomerName() %>" required>
                 </div>
                 
                 <div class="mb-3">
-                    <label for="licenseNo" class="form-label">Driver License</label> 
-                    <input type="text" class="form-control" id="licenseNo" name="driverLicense" value="<%= driver.getLicenseNo() %>" required> 
+                    <label for="customerAddress" class="form-label">Customer Address</label>
+                    <input type="text" class="form-control" id="customerAddress" name="customerAddress" value="<%= customer.getCustomerAddress() %>" required>
                 </div>
                 
                 <div class="mb-3">
-                    <label for="contactNo" class="form-label">Driver Phone</label> 
-                    <input type="text" class="form-control" id="contactNo" name="driverPhone" value="<%= driver.getContactNo() %>" required> 
+                    <label for="customerPhone" class="form-label">Customer Phone</label>
+                    <input type="text" class="form-control" id="customerPhone" name="customerPhone" value="<%= customer.getCustomerPhone() %>" required>
                 </div>
 
-                <button type="submit" class="btn btn-warning">Update Driver</button>
+                <button type="submit" class="btn btn-warning">Update Customer</button>
             </form>
             <% 
                 } else { 
             %>
             <div class="alert alert-danger" role="alert">
-                Driver not found.
+                Customer not found.
             </div>
             <% } %>
         </div>

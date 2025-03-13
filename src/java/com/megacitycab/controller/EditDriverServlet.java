@@ -26,24 +26,22 @@ public class EditDriverServlet extends HttpServlet {
         }
 
         try {
-           
+            // Create a Driver object
             Driver driver = new Driver(driverId, dName, licenseNo, contactNo);  
 
-            
+            // Get instance of DriverDAO
             DriverDAO driverDao = DriverDAO.getInstance();
             boolean isUpdated = driverDao.updateDriver(driver);
 
-            
+            // Redirect based on update success
             if (isUpdated) {
-                response.sendRedirect("driver.jsp?driverId=" + driverId + "&success=true"); // Or to a driver list page
+                response.sendRedirect("driver.jsp?success=true");
             } else {
                 response.sendRedirect("editDriver.jsp?driverId=" + driverId + "&error=Failed to update driver.");
             }
         } catch (Exception e) {
-            // Log the error and redirect
             e.printStackTrace();
             response.sendRedirect("editDriver.jsp?driverId=" + driverId + "&error=" + e.getMessage());
         }
     }
 }
-

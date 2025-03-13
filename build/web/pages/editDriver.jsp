@@ -52,7 +52,7 @@
 
                 try {
                     if (driverId != null) {
-                        DriverDAO driverDao = new DriverDAO();
+                        DriverDAO driverDao = DriverDAO.getInstance(); // Use singleton pattern if applicable
                         driver = driverDao.getDriverById(driverId);
                     }
                 } catch (Exception e) {
@@ -67,6 +67,7 @@
                 <div class="mb-3">
                     <label for="dName" class="form-label">Driver Name</label>  
                     <input type="text" class="form-control" id="dName" name="driverName" value="<%= driver.getDName() %>" required> 
+                </div>
                 
                 <div class="mb-3">
                     <label for="licenseNo" class="form-label">Driver License</label> 

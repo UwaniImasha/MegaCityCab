@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page session="true" %>
 <!DOCTYPE html>
@@ -6,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add New Customer - Mega City Cab</title>
+    <title>Add New Booking - Mega City Cab</title>
     <!-- Bootstrap & Font Awesome -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
@@ -43,16 +42,16 @@
             background-color: #FFCC00;
             color: black;
         }
-
-        .main-content {
-            margin-left: 250px;
-            padding: 20px;
-        }
         
         .sidebar h3 {
             color: #FFFFFF;
             text-align: center;
             font-weight: bold;
+        }
+
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
         }
 
         .header {
@@ -123,33 +122,63 @@
 
     <!-- Main Content -->
     <div class="main-content">
-        <div class="header">Add New Customer</div>
+        <div class="header">Add New Booking</div>
         <div class="container mt-4">
             <div class="manage-card">
-                <h4>Customer Details</h4>
-                <form action="/MegaCityCab/addCustomerServlet" method="post">
+                <h4>Booking Details</h4>
+                <form action="/MegaCityCab/addBookingServlet" method="post">
+                    <!-- Booking Number -->
+                    <div class="mb-3">
+                        <label for="bookingNumber" class="form-label"><i class="fas fa-receipt"></i> Booking Number</label>
+                        <input type="text" class="form-control" id="bookingNumber" name="bookingNumber" required>
+                    </div>
+
                     <!-- Customer ID -->
                     <div class="mb-3">
-                        <label for="customerId" class="form-label"><i class="fas fa-id-card"></i> Customer ID</label>
+                        <label for="customerId" class="form-label"><i class="fas fa-user"></i> Customer ID</label>
                         <input type="text" class="form-control" id="customerId" name="customerId" required>
                     </div>
 
-                    <!-- Customer Name -->
+                    <!-- Driver ID -->
                     <div class="mb-3">
-                        <label for="customerName" class="form-label"><i class="fas fa-user"></i> Customer Name</label>
-                        <input type="text" class="form-control" id="customerName" name="customerName" required>
+                        <label for="driverId" class="form-label"><i class="fas fa-id-badge"></i> Driver ID</label>
+                        <input type="text" class="form-control" id="driverId" name="driverId" required>
                     </div>
 
-                    <!-- Customer Address -->
+                    <!-- Car ID -->
                     <div class="mb-3">
-                        <label for="customerAddress" class="form-label"><i class="fas fa-map-marker-alt"></i> Address</label>
-                        <input type="text" class="form-control" id="customerAddress" name="customerAddress" required>
+                        <label for="carId" class="form-label"><i class="fas fa-car"></i> Car ID</label>
+                        <input type="text" class="form-control" id="carId" name="carId" required>
                     </div>
 
-                    <!-- Customer Phone Number -->
+                    <!-- Phone -->
                     <div class="mb-3">
-                        <label for="customerPhone" class="form-label"><i class="fas fa-phone"></i> Phone Number</label>
-                        <input type="text" class="form-control" id="customerPhone" name="customerPhone" required>
+                        <label for="phone" class="form-label"><i class="fas fa-phone"></i> Phone Number</label>
+                        <input type="text" class="form-control" id="phone" name="phone" required>
+                    </div>
+
+                    <!-- Pickup Location -->
+                    <div class="mb-3">
+                        <label for="pickupLocation" class="form-label"><i class="fas fa-map-marker-alt"></i> Pickup Location</label>
+                        <input type="text" class="form-control" id="pickupLocation" name="pickupLocation" required>
+                    </div>
+
+                    <!-- Destination -->
+                    <div class="mb-3">
+                        <label for="destination" class="form-label"><i class="fas fa-map-marked-alt"></i> Destination</label>
+                        <input type="text" class="form-control" id="destination" name="destination" required>
+                    </div>
+
+                    <!-- Date & Time -->
+                    <div class="mb-3">
+                        <label for="dateTime" class="form-label"><i class="fas fa-clock"></i> Date & Time</label>
+                        <input type="datetime-local" class="form-control" id="dateTime" name="dateTime" required>
+                    </div>
+
+                    <!-- Fare -->
+                    <div class="mb-3">
+                        <label for="fare" class="form-label"><i class="fas fa-dollar-sign"></i> Fare</label>
+                        <input type="text" class="form-control" id="fare" name="fare" required>
                     </div>
 
                     <!-- Success Message -->
@@ -157,11 +186,11 @@
                     String success = request.getParameter("success");
                     if ("true".equals(success)) { 
                     %>
-                    <div class="alert alert-success text-center">Customer added successfully!</div>
+                    <div class="alert alert-success text-center">Booking added successfully!</div>
                     <% } %>
 
                     <!-- Submit Button -->
-                    <button type="submit" class="btn-custom">Add Customer</button>
+                    <button type="submit" class="btn-custom">Add Booking</button>
                 </form>
             </div>
         </div>

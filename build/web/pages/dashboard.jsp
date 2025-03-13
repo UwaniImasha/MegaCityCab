@@ -150,7 +150,7 @@
                         <i class="fas fa-receipt dashboard-icons"></i>
                         <h4>Billing</h4>
                         <p>Calculate and print bills</p>
-                        <a href="calculateBill.jsp" class="btn btn-custom">View</a>
+                        <a href="booking.jsp" class="btn btn-custom">View</a>
                     </div>
                 </div>
             </div>

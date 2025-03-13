@@ -3,13 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
+            <file>file:/C:/Users/Uwani%20Imasha/Documents/NetBeansProjects/MegaCityCab/web/pages/login.jsp</file>
             <file>file:/C:/Users/Uwani%20Imasha/Documents/NetBeansProjects/MegaCityCab/web/pages/addCustomers.jsp</file>
-=======
-            <file>file:/C:/Users/Uwani%20Imasha/Documents/NetBeansProjects/MegaCityCab/web/pages/booking.jsp</file>
-            <file>file:/C:/Users/Uwani%20Imasha/Documents/NetBeansProjects/MegaCityCab/web/pages/car.jsp</file>
-            <file>file:/C:/Users/Uwani%20Imasha/Documents/NetBeansProjects/MegaCityCab/web/pages/customers.jsp</file>
->>>>>>> 3d61355b78c122d0276ff17b481c1688c83c0e5a
+            <file>file:/C:/Users/Uwani%20Imasha/Documents/NetBeansProjects/MegaCityCab/src/java/com/megacitycab/dao/DriverDAO.java</file>
+            <file>file:/C:/Users/Uwani%20Imasha/Documents/NetBeansProjects/MegaCityCab/src/java/com/megacitycab/model/Driver.java</file>
+            <file>file:/C:/Users/Uwani%20Imasha/Documents/NetBeansProjects/MegaCityCab/src/java/com/megacitycab/controller/EditDriverServlet.java</file>
         </group>
     </open-files>
 </project-private>

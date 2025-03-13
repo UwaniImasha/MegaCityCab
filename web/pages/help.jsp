@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page session="true" %>
 <!DOCTYPE html>
@@ -6,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add New Customer - Mega City Cab</title>
+    <title>Help - Mega City Cab</title>
     <!-- Bootstrap & Font Awesome -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
@@ -48,12 +47,6 @@
             margin-left: 250px;
             padding: 20px;
         }
-        
-        .sidebar h3 {
-            color: #FFFFFF;
-            text-align: center;
-            font-weight: bold;
-        }
 
         .header {
             background-color: #FFCC00;
@@ -65,12 +58,13 @@
             border-radius: 5px;
         }
 
-        .manage-card {
+        .help-section {
             background-color: white;
             color: black;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
         }
 
         .btn-custom {
@@ -87,22 +81,6 @@
             background-color: #E6B800;
             color: black;
         }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-container label {
-            color: black;
-        }
-
-        .error-msg {
-            color: red;
-            font-size: 14px;
-            text-align: center;
-            margin-top: 10px;
-        }
-
     </style>
 </head>
 
@@ -113,58 +91,70 @@
         <h3 class="text-center text-white">Mega City Cab</h3>
         <a href="dashboard.jsp"><i class="fas fa-home"></i> Dashboard</a>
         <a href="addCustomers.jsp"><i class="fas fa-user-plus"></i> Add Customer</a>
-        <a href="addBooking.jsp"><i class="fas fa-taxi"></i> Add Bookings</a>
-        <a href="booking.jsp"><i class="fas fa-receipt"></i> Billing</a>
+        <a href="addBooking.jsp"><i class="fas fa-taxi"></i> Bookings</a>
+        <a href="calculateBill.jsp"><i class="fas fa-receipt"></i> Billing</a>
         <a href="addCar.jsp"><i class="fas fa-car"></i> Add Cars</a>
         <a href="addDrivers.jsp"><i class="fas fa-user"></i> Add Drivers</a>
         <a href="help.jsp"><i class="fas fa-info-circle"></i> Help</a>
-        <a href="login.jsp"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        <a href="logout.jsp"><i class="fas fa-sign-out-alt"></i> Logout</a>
     </div>
 
     <!-- Main Content -->
     <div class="main-content">
-        <div class="header">Add New Customer</div>
+        <div class="header">System Usage Guidelines</div>
+
         <div class="container mt-4">
-            <div class="manage-card">
-                <h4>Customer Details</h4>
-                <form action="/MegaCityCab/addCustomerServlet" method="post">
-                    <!-- Customer ID -->
-                    <div class="mb-3">
-                        <label for="customerId" class="form-label"><i class="fas fa-id-card"></i> Customer ID</label>
-                        <input type="text" class="form-control" id="customerId" name="customerId" required>
-                    </div>
+            <div class="help-section">
+                <h2>1. Introduction</h2>
+                <p>Welcome to Mega City Cab! This guide will help you navigate the system and use its features effectively.</p>
 
-                    <!-- Customer Name -->
-                    <div class="mb-3">
-                        <label for="customerName" class="form-label"><i class="fas fa-user"></i> Customer Name</label>
-                        <input type="text" class="form-control" id="customerName" name="customerName" required>
-                    </div>
+                <h2>2. Login Instructions</h2>
+                <p>To login, please use your registered username and password. If you don't have an account, please contact the administrator.</p>
+                <p>If you forget your password, click on "Forgot Password" on the login page to reset it.</p>
 
-                    <!-- Customer Address -->
-                    <div class="mb-3">
-                        <label for="customerAddress" class="form-label"><i class="fas fa-map-marker-alt"></i> Address</label>
-                        <input type="text" class="form-control" id="customerAddress" name="customerAddress" required>
-                    </div>
+                <h2>3. Adding a New Booking</h2>
+                <p>To add a new booking:</p>
+                <ul>
+                    <li>Go to the "Add Booking" section from the sidebar.</li>
+                    <li>Enter the customer's details, including name, phone number, and destination.</li>
+                    <li>Click "Submit" to save the booking.</li>
+                </ul>
 
-                    <!-- Customer Phone Number -->
-                    <div class="mb-3">
-                        <label for="customerPhone" class="form-label"><i class="fas fa-phone"></i> Phone Number</label>
-                        <input type="text" class="form-control" id="customerPhone" name="customerPhone" required>
-                    </div>
+                <h2>4. Managing Customers</h2>
+                <p>To manage customer details:</p>
+                <ul>
+                    <li>Go to the "Add Customer" section.</li>
+                    <li>Click "Add New Customer" to enter their details.</li>
+                    <li>You can edit or delete customer records as needed.</li>
+                </ul>
 
-                    <!-- Success Message -->
-                    <% 
-                    String success = request.getParameter("success");
-                    if ("true".equals(success)) { 
-                    %>
-                    <div class="alert alert-success text-center">Customer added successfully!</div>
-                    <% } %>
+                <h2>5. Billing</h2>
+                <p>To calculate and print bills for bookings:</p>
+                <ul>
+                    <li>Go to the "Billing" section.</li>
+                    <li>Select a booking, and the system will display the booking details.</li>
+                    <li>Enter any discounts or taxes, if applicable.</li>
+                    <li>Click the "Submit" button to calculate the final bill.</li>
+                    <li>The system will display the final bill with the updated fare.</li>
+                    <li>Click the "Print Bill" button to print the bill.</li>
+                </ul>
 
-                    <!-- Submit Button -->
-                    <button type="submit" class="btn-custom">Add Customer</button>
-                </form>
+                <h2>6. Logout</h2>
+                <p>To logout, click the "Logout" button at the top-right of the sidebar.</p>
+
+                <h2>7. Contact Support</h2>
+                <p>If you need further assistance, please contact us:</p>
+                <ul>
+                    <li>Email: support@megacitycab.com</li>
+                    <li>Phone: 123-456-7890</li>
+                </ul>
+            </div>
+
+            <div class="text-center mt-3">
+                <a href="dashboard.jsp" class="btn btn-custom">Back to Dashboard</a>
             </div>
         </div>
+
     </div>
 
     <!-- JavaScript -->
